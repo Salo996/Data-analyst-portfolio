@@ -15,8 +15,11 @@ Strong collaborator who partners with cross-functional teams to drive informed d
 
 - **Responsive Design**: Works on all devices (desktop, tablet, mobile)
 - **Modern UI/UX**: Clean, professional design with smooth animations
-- **Project Showcase**: Display of data analysis projects and achievements
-- **Skills Section**: Comprehensive technical skills and tools
+- **Business Impact Showcase**: Display of projects with quantified results (20% efficiency gains, 25% satisfaction improvements)
+- **Technical Skills**: Expertise in Excel (Advanced), SQL, Tableau, Salesforce, and MongoDB
+- **ETL & Data Pipeline Experience**: Demonstrated experience in data transformation and modeling
+- **Cross-Industry Experience**: Projects spanning technology (Lenovo), insurance (Swiss Re), and manufacturing (GE)
+- **Bilingual Capability**: English (Fluent) and Spanish (Native) for international projects
 - **Contact Integration**: Direct contact information and resume download
 
 ## Sections Included
