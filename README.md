@@ -1,14 +1,23 @@
-# Data Analyst Portfolio
+# Salomón Santiago Esquivel - Data Analyst Portfolio
 
-A professional portfolio website showcasing data analysis skills, projects, and expertise.
+Results-driven Data Analyst with 6+ years of experience converting complex datasets into strategic business insights. This portfolio showcases my expertise in SQL, Excel, Tableau, and pipeline optimization, with a proven track record of boosting operational efficiency by 20%.
 
-## Features
+## About Me
+
+📍 **Location**: Mexico City, Mexico  
+📧 **Email**: salo.santiago96@gmail.com  
+📱 **Phone**: +52 551916 4142  
+💼 **LinkedIn**: [salomon-santiago-493002a7](https://www.linkedin.com/in/salomon-santiago-493002a7/)  
+
+Strong collaborator who partners with cross-functional teams to drive informed decision-making. Currently serving as Service Offering Manager at Lenovo North America, with previous experience at Swiss Re and General Electric.
+
+## Portfolio Features
 
 - **Responsive Design**: Works on all devices (desktop, tablet, mobile)
 - **Modern UI/UX**: Clean, professional design with smooth animations
-- **Project Showcase**: Display your best data analysis projects
-- **Skills Section**: Highlight technical skills and tools
-- **Contact Integration**: Easy ways for employers to reach you
+- **Project Showcase**: Display of data analysis projects and achievements
+- **Skills Section**: Comprehensive technical skills and tools
+- **Contact Integration**: Direct contact information and resume download
 
 ## Sections Included
 
@@ -85,34 +94,44 @@ A professional portfolio website showcasing data analysis skills, projects, and 
    - Real-time analytics
    - Cloud-based solutions
 
-## Technical Skills to Highlight
+## My Technical Skills
 
-### Programming Languages
-- **Python**: pandas, NumPy, scikit-learn, matplotlib, seaborn
-- **R**: dplyr, ggplot2, tidyverse
-- **SQL**: MySQL, PostgreSQL, SQL Server
-- **JavaScript**: D3.js for advanced visualizations
+### Core Competencies
+- **Data Analysis**: Excel (Advanced), SQL, Tableau
+- **Databases**: Salesforce, MongoDB
+- **Data Processes**: ETL, Data transformation, Data modeling
+- **Tools**: Microsoft Office Suite, Jira
+- **Languages**: English (Fluent), Spanish (Native)
 
-### Visualization Tools
-- **Tableau**: Advanced dashboards and storytelling
-- **Power BI**: Business intelligence and reporting
-- **Excel**: Advanced functions, pivot tables, VBA
-- **Google Analytics**: Web analytics and insights
+### Professional Experience Highlights
 
-### Statistical Methods
-- Descriptive statistics
-- Hypothesis testing
-- Regression analysis
-- Time series analysis
-- A/B testing
-- Statistical modeling
+#### Service Offering Manager – Lenovo North America (Feb 2022 – Present)
+- 📈 Increased operational efficiency by 20% through systematic analysis and data-driven improvements
+- 😊 Improved customer satisfaction by 25% via quarterly data analysis for portfolio optimization
+- ⚡ Streamlined custom offering creation using optimized data models
+- 📋 Established comprehensive data governance standards with 100% team adoption
 
-### Tools & Technologies
-- **Databases**: MySQL, PostgreSQL, MongoDB
-- **Cloud Platforms**: AWS, Google Cloud, Azure
-- **Version Control**: Git, GitHub
-- **Jupyter Notebooks**: Interactive analysis
-- **Docker**: Containerization for reproducible analysis
+#### Claims Examiner – Swiss Re LATAM (Mar 2020 – Jan 2022)
+- 🔧 Enhanced claims processing efficiency by 13% through optimized communication workflows
+- 📉 Reduced denied claims by 15% through improved document analysis processes
+- 💰 Increased financial data accuracy by 25% with enhanced bordereau analysis
+- 🔄 Managed complex data ETL processes to deliver accurate financial reporting
+
+#### FP&A Finance Intern – General Electric LATAM (Aug 2018 – Feb 2020)
+- 📊 Improved financial data accuracy by 20% via detailed analysis of Salesforce reports
+- 📈 Increased sales data quality by 15% through collaboration with sales leadership
+- 🚀 Optimized data pipelines, enhancing documentation processing efficiency by 85%
+
+### Certifications
+- Google Data Analytics Certificate (Coursera)
+- SQL, Excel for Data Analysis, MongoDB (Codecademy)
+- IELTS Academic
+
+### Education
+**Universidad Iberoamericana, Mexico City**  
+Bachelor of Engineering in Industrial Engineering
+- Relevant Coursework: Statistics, Data Analysis, Process Optimization
+- Track and Field Team Member (2016–2018)
 
 ## Portfolio Best Practices
 
