@@ -13,8 +13,7 @@ Strong collaborator who partners with cross-functional teams to drive informed d
 
 ## Portfolio Features
 
-- **Responsive Design**: Works on all devices (desktop, tablet, mobile)
-- **Modern UI/UX**: Clean, professional design with smooth animations
+
 - **Business Impact Showcase**: Display of projects with quantified results (20% efficiency gains, 25% satisfaction improvements)
 - **Technical Skills**: Expertise in Excel (Advanced), SQL, Tableau, Salesforce, and MongoDB
 - **ETL & Data Pipeline Experience**: Demonstrated experience in data transformation and modeling
