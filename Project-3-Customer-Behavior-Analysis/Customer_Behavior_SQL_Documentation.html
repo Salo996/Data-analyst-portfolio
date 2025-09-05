@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Behavior Analytics - SQL Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #27ae60;
+            margin-top: 25px;
+        }
+        .query-block {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .sql-code {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 13px;
+        }
+        .explanation {
+            background-color: #e8f5e8;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .business-impact {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .difficulty-easy {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .difficulty-medium {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .difficulty-hard {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .key-concepts {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        .header-info {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+        .professional-highlight {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Customer Behavior Analytics - SQL Documentation</h1>
+        <p class="header-info">
+            <strong>Project:</strong> Customer Behavior Analytics Dashboard<br>
+            <strong>Focus:</strong> Clean, Interview-Ready SQL for Senior Data Analyst Positions<br>
+            <strong>Created by:</strong> Salomón Santiago Esquivel<br>
+            <strong>Complexity:</strong> Progressive SQL Skills (EASY → MEDIUM → MEDIUM-HARD)
+        </p>
+
+        <h2>🎯 Project Overview</h2>
+        <div class="explanation">
+            <p><strong>Business Objective:</strong> Demonstrate progressive SQL skills through customer behavior analysis, focusing on clean, readable queries that solve real business problems for senior-level data analyst positions.</p>
+            
+            <p><strong>Key Business Questions:</strong></p>
+            <ul>
+                <li>How many customers return after their first purchase?</li>
+                <li>How can we group customers by their spending behavior?</li>
+                <li>Which customers are most valuable for retention efforts?</li>
+                <li>Which customers might churn based on purchase inactivity?</li>
+                <li>How do customers progress from first visit to purchase?</li>
+            </ul>
+        </div>
+
+        <div class="professional-highlight">
+            <h3>✨ Professional SQL Approach:</h3>
+            <ul>
+                <li><strong>Beginner-Friendly Queries:</strong> 30-60 lines each, perfect for entry-level interviews</li>
+                <li><strong>Basic SQL Skills:</strong> Uses only fundamental concepts you learn first</li>
+                <li><strong>Real Business Problems:</strong> Each query answers important customer questions</li>
+                <li><strong>Easy to Explain:</strong> Simple logic that's perfect for interview discussions</li>
+            </ul>
+        </div>
+
+        <h2>📋 Data Structure Overview</h2>
+        <div class="key-concepts">
+            <h3>Simple Customer Data Tables:</h3>
+            <ul>
+                <li><strong>customer_purchases:</strong> customer_id, purchase_date, purchase_amount</li>
+                <li><strong>customer_orders:</strong> customer_id, order_date, order_amount</li>
+                <li><strong>Focus:</strong> Basic tables perfect for learning SQL fundamentals</li>
+            </ul>
+        </div>
+
+        <h2>🔍 SQL Queries Documentation</h2>
+
+        <!-- QUERY 1 -->
+        <div class="query-block">
+            <h3>Query 1: Customer Retention Analysis <span class="difficulty-easy">EASY</span></h3>
+            
+            <div class="business-impact">
+                <strong>Business Question:</strong> How many customers return after their first purchase?
+            </div>
+
+            <div class="sql-code">-- Basic customer purchase count
+SELECT 
+    customer_id,
+    COUNT(*) as total_purchases
+FROM customer_purchases
+GROUP BY customer_id
+ORDER BY total_purchases DESC;
+
+-- Customer retention categories
+SELECT 
+    customer_id,
+    COUNT(*) as total_purchases,
+    CASE 
+        WHEN COUNT(*) = 1 THEN 'One-time Customer'
+        WHEN COUNT(*) = 2 THEN 'Returning Customer'
+        ELSE 'Loyal Customer'
+    END as customer_type
+FROM customer_purchases
+GROUP BY customer_id
+ORDER BY total_purchases DESC;
+
+-- Summary of customer types
+SELECT 
+    CASE 
+        WHEN COUNT(*) = 1 THEN 'One-time Customer'
+        WHEN COUNT(*) = 2 THEN 'Returning Customer'
+        ELSE 'Loyal Customer'
+    END as customer_type,
+    COUNT(DISTINCT customer_id) as customer_count
+FROM customer_purchases
+GROUP BY customer_id, CASE 
+    WHEN COUNT(*) = 1 THEN 'One-time Customer'
+    WHEN COUNT(*) = 2 THEN 'Returning Customer'
+    ELSE 'Loyal Customer'
+END
+ORDER BY customer_count DESC;</div>
+
+            <div class="explanation">
+                <h4>🔍 Step-by-Step Explanation:</h4>
+                <ol>
+                    <li><strong>GROUP BY:</strong> Groups all purchases by each customer</li>
+                    <li><strong>COUNT():</strong> Counts how many purchases each customer made</li>
+                    <li><strong>CASE WHEN:</strong> Creates categories based on purchase count</li>
+                    <li><strong>ORDER BY:</strong> Shows customers with most purchases first</li>
+                    <li><strong>Simple Logic:</strong> Easy to understand customer types</li>
+                </ol>
+            </div>
+
+            <div class="key-concepts">
+                <strong>SQL Concepts Used:</strong> GROUP BY, COUNT(), CASE WHEN, ORDER BY
+            </div>
+        </div>
+
+        <!-- QUERY 2 -->
+        <div class="query-block">
+            <h3>Query 2: Customer Activity Segmentation <span class="difficulty-easy">EASY</span></h3>
+            
+            <div class="business-impact">
+                <strong>Business Question:</strong> How can we group customers by their spending behavior?
+            </div>
+
+            <div class="sql-code">-- Customer spending totals
+SELECT 
+    customer_id,
+    SUM(order_amount) as total_spent,
+    COUNT(*) as total_orders
+FROM customer_orders
+GROUP BY customer_id
+ORDER BY total_spent DESC;
+
+-- Customer segmentation by spending
+SELECT 
+    customer_id,
+    SUM(order_amount) as total_spent,
+    CASE 
+        WHEN SUM(order_amount) >= 500 THEN 'VIP Customer'
+        WHEN SUM(order_amount) >= 200 THEN 'Regular Customer'
+        ELSE 'Budget Customer'
+    END as customer_segment
+FROM customer_orders
+GROUP BY customer_id
+ORDER BY total_spent DESC;
+
+-- Count customers in each segment
+SELECT 
+    CASE 
+        WHEN SUM(order_amount) >= 500 THEN 'VIP Customer'
+        WHEN SUM(order_amount) >= 200 THEN 'Regular Customer'
+        ELSE 'Budget Customer'
+    END as customer_segment,
+    COUNT(*) as customer_count
+FROM customer_orders
+GROUP BY customer_id, CASE 
+    WHEN SUM(order_amount) >= 500 THEN 'VIP Customer'
+    WHEN SUM(order_amount) >= 200 THEN 'Regular Customer'
+    ELSE 'Budget Customer'
+END
+ORDER BY customer_count DESC;</div>
+
+            <div class="explanation">
+                <h4>🔍 Step-by-Step Explanation:</h4>
+                <ol>
+                    <li><strong>SUM() Function:</strong> Adds up all order amounts per customer</li>
+                    <li><strong>COUNT() Function:</strong> Counts number of orders per customer</li>
+                    <li><strong>CASE WHEN:</strong> Creates customer segments based on spending</li>
+                    <li><strong>GROUP BY:</strong> Groups data by customer and segment</li>
+                    <li><strong>Simple Thresholds:</strong> Easy spending levels (VIP, Regular, Budget)</li>
+                </ol>
+            </div>
+
+            <div class="key-concepts">
+                <strong>SQL Concepts Used:</strong> SUM(), COUNT(), CASE WHEN, GROUP BY
+            </div>
+        </div>
+
+        <!-- QUERY 3 -->
+        <div class="query-block">
+            <h3>Query 3: Customer Lifetime Value Analysis <span class="difficulty-medium">MEDIUM</span></h3>
+            
+            <div class="business-impact">
+                <strong>Business Question:</strong> Which customers spend the most money?
+            </div>
+
+            <div class="sql-code">-- Customer LTV ranking with window functions
+SELECT 
+    customer_id,
+    total_orders,
+    total_revenue,
+    avg_order_value,
+    days_as_customer,
+    -- Rank customers by different metrics
+    RANK() OVER (ORDER BY total_revenue DESC) as revenue_rank,
+    RANK() OVER (ORDER BY total_orders DESC) as frequency_rank,
+    -- Customer tier based on value
+    CASE 
+        WHEN total_revenue >= 2000 THEN 'Platinum'
+        WHEN total_revenue >= 1000 THEN 'Gold'
+        WHEN total_revenue >= 500 THEN 'Silver'
+        ELSE 'Bronze'
+    END as customer_tier
+FROM (
+    SELECT 
+        customer_id,
+        COUNT(*) as total_orders,
+        SUM(order_amount) as total_revenue,
+        ROUND(AVG(order_amount), 2) as avg_order_value,
+        DATEDIFF(MAX(order_date), MIN(order_date)) as days_as_customer
+    FROM customer_orders
+    GROUP BY customer_id
+) customer_ltv
+ORDER BY total_revenue DESC;
+
+-- Top 20 customers with retention strategies
+SELECT 
+    customer_id,
+    customer_tier,
+    total_revenue,
+    revenue_rank,
+    CASE 
+        WHEN customer_tier = 'Platinum' THEN 'VIP treatment and exclusive access'
+        WHEN customer_tier = 'Gold' THEN 'Premium support and early access'
+        WHEN customer_tier = 'Silver' THEN 'Loyalty rewards and special offers'
+        ELSE 'Standard retention campaigns'
+    END as retention_strategy
+FROM ranked_customers
+WHERE revenue_rank <= 20
+ORDER BY revenue_rank;</div>
+
+            <div class="explanation">
+                <h4>🔍 Step-by-Step Explanation:</h4>
+                <ol>
+                    <li><strong>Window Functions:</strong> RANK() OVER (ORDER BY...) for customer ranking</li>
+                    <li><strong>Date Calculation:</strong> DATEDIFF() for customer relationship duration</li>
+                    <li><strong>Multiple Rankings:</strong> Revenue rank and frequency rank</li>
+                    <li><strong>Customer Tiers:</strong> Platinum, Gold, Silver, Bronze classification</li>
+                    <li><strong>Strategic Automation:</strong> Retention strategies by customer value</li>
+                </ol>
+            </div>
+
+            <div class="key-concepts">
+                <strong>SQL Concepts Used:</strong> Window functions (RANK), date arithmetic (DATEDIFF), customer tier classification
+            </div>
+        </div>
+
+        <!-- QUERY 4 -->
+        <div class="query-block">
+            <h3>Query 4: Customer Activity Analysis <span class="difficulty-medium">MEDIUM</span></h3>
+            
+            <div class="business-impact">
+                <strong>Business Question:</strong> Which customers haven't bought anything recently?
+            </div>
+
+            <div class="sql-code">-- Customer churn risk analysis
+SELECT 
+    customer_id,
+    last_order_date,
+    days_since_last_order,
+    total_orders,
+    total_spent,
+    CASE 
+        WHEN days_since_last_order > 90 THEN 'High Risk'
+        WHEN days_since_last_order > 60 THEN 'Medium Risk'
+        WHEN days_since_last_order > 30 THEN 'Low Risk'
+        ELSE 'Active'
+    END as churn_risk,
+    CASE 
+        WHEN total_spent >= 1000 THEN 'High Value'
+        WHEN total_spent >= 300 THEN 'Medium Value'
+        ELSE 'Low Value'
+    END as customer_value
+FROM (
+    SELECT 
+        customer_id,
+        MAX(order_date) as last_order_date,
+        DATEDIFF(CURRENT_DATE, MAX(order_date)) as days_since_last_order,
+        COUNT(*) as total_orders,
+        SUM(order_amount) as total_spent
+    FROM customer_orders
+    GROUP BY customer_id
+) customer_activity
+ORDER BY days_since_last_order DESC;
+
+-- Churn risk summary with action plan
+SELECT 
+    churn_risk,
+    customer_value,
+    COUNT(*) as customer_count,
+    CASE 
+        WHEN churn_risk = 'High Risk' AND customer_value = 'High Value' THEN 'Personal call + special discount'
+        WHEN churn_risk = 'High Risk' THEN 'Email campaign + discount offer'
+        WHEN churn_risk = 'Medium Risk' THEN 'Re-engagement email series'
+        ELSE 'Continue regular marketing'
+    END as recommended_action
+FROM risk_analysis
+GROUP BY churn_risk, customer_value
+ORDER BY customer_count DESC;</div>
+
+            <div class="explanation">
+                <h4>🔍 Step-by-Step Explanation:</h4>
+                <ol>
+                    <li><strong>Date Calculations:</strong> DATEDIFF(CURRENT_DATE, MAX(order_date)) for recency</li>
+                    <li><strong>Risk Classification:</strong> Days-based churn risk categories</li>
+                    <li><strong>Customer Value:</strong> Spending-based value classification</li>
+                    <li><strong>Priority Matrix:</strong> Risk level + customer value for action planning</li>
+                    <li><strong>Automated Strategies:</strong> Specific retention actions by risk/value combination</li>
+                </ol>
+            </div>
+
+            <div class="key-concepts">
+                <strong>SQL Concepts Used:</strong> Date arithmetic, risk categorization, business priority matrix, automated recommendations
+            </div>
+        </div>
+
+        <!-- QUERY 5 -->
+        <div class="query-block">
+            <h3>Query 5: Customer Purchase Patterns <span class="difficulty-hard">MEDIUM-HARD</span></h3>
+            
+            <div class="business-impact">
+                <strong>Business Question:</strong> How many times do customers make purchases?
+            </div>
+
+            <div class="sql-code">-- Customer journey analysis with conversion metrics
+SELECT 
+    customer_id,
+    first_visit_date,
+    first_purchase_date,
+    total_visits,
+    total_purchases,
+    ROUND(total_purchases * 100.0 / total_visits, 2) as conversion_rate,
+    CASE 
+        WHEN total_purchases >= 5 THEN 'Repeat Buyer'
+        WHEN total_purchases >= 2 THEN 'Multi-Purchase'
+        WHEN total_purchases = 1 AND total_visits <= 3 THEN 'Quick Convert'
+        WHEN total_purchases = 1 THEN 'Slow Convert'
+        WHEN total_visits >= 5 THEN 'Browser'
+        ELSE 'Visitor'
+    END as journey_type
+FROM journey_data
+ORDER BY conversion_rate DESC;
+
+-- Conversion funnel analysis
+SELECT 
+    funnel_stage,
+    customer_count,
+    LAG(customer_count) OVER (ORDER BY stage_number) as previous_stage,
+    ROUND(customer_count * 100.0 / LAG(customer_count) OVER (ORDER BY stage_number), 2) as conversion_rate
+FROM (
+    SELECT 1 as stage_number, 'Total Visitors' as funnel_stage, 
+           COUNT(DISTINCT customer_id) as customer_count
+    FROM customer_visits
+    UNION ALL
+    SELECT 2, 'Multiple Visits (2+)', COUNT(DISTINCT customer_id)
+    FROM customer_visits 
+    GROUP BY customer_id 
+    HAVING COUNT(*) >= 2
+    UNION ALL
+    SELECT 3, 'First Purchase', COUNT(DISTINCT customer_id)
+    FROM customer_visits 
+    WHERE purchase_amount > 0
+) funnel_data
+ORDER BY stage_number;
+
+-- Journey optimization recommendations
+SELECT 
+    journey_type,
+    COUNT(*) as customer_count,
+    ROUND(AVG(conversion_rate), 2) as avg_conversion_rate,
+    CASE 
+        WHEN journey_type = 'Browser' THEN 'Focus on conversion tactics'
+        WHEN journey_type = 'Slow Convert' THEN 'Simplify purchase process'
+        WHEN journey_type = 'Quick Convert' THEN 'Target similar prospects'
+        ELSE 'Improve site engagement'
+    END as optimization_focus
+FROM journey_summary
+GROUP BY journey_type
+ORDER BY avg_conversion_rate DESC;</div>
+
+            <div class="explanation">
+                <h4>🔍 Step-by-Step Explanation:</h4>
+                <ol>
+                    <li><strong>Journey Classification:</strong> Multi-criteria CASE WHEN for customer behavior types</li>
+                    <li><strong>LAG() Function:</strong> Compares current funnel stage to previous for conversion rates</li>
+                    <li><strong>UNION ALL:</strong> Combines multiple funnel stage calculations</li>
+                    <li><strong>HAVING Clause:</strong> Filters aggregated groups (customers with 2+ visits)</li>
+                    <li><strong>Optimization Strategy:</strong> Automated recommendations by journey pattern</li>
+                </ol>
+            </div>
+
+            <div class="key-concepts">
+                <strong>SQL Concepts Used:</strong> Advanced window functions (LAG), UNION ALL, HAVING clause, conversion funnel analysis
+            </div>
+        </div>
+
+        <h2>📊 Dashboard Visualizations Created</h2>
+        
+        <div class="explanation">
+            <h3>Professional Python Dashboard Suite</h3>
+            <p>Each SQL query powers corresponding dashboard visualizations:</p>
+            
+            <ul>
+                <li><strong>Retention Dashboard:</strong> Customer loyalty distribution (One-time, Returning, Loyal)</li>
+                <li><strong>Segmentation Dashboard:</strong> Customer tiers (VIP, Premium, Regular, Budget)</li>
+                <li><strong>LTV Dashboard:</strong> Customer value rankings (Platinum, Gold, Silver, Bronze)</li>
+                <li><strong>Churn Risk Dashboard:</strong> Risk levels (High, Medium, Low) with value prioritization</li>
+                <li><strong>Journey Dashboard:</strong> Conversion funnel and customer behavior types</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Interview Presentation Tips</h2>
+        
+        <div class="business-impact">
+            <h3>How to Present These Queries for Senior Data Analyst Positions:</h3>
+            <ol>
+                <li><strong>Start with Business Value:</strong> "These queries solve real customer intelligence problems..."</li>
+                <li><strong>Highlight Progressive Skills:</strong> "I structured them to show SQL skill development from basic to advanced..."</li>
+                <li><strong>Emphasize Clean Code:</strong> "I focused on readable, maintainable SQL that any team can understand..."</li>
+                <li><strong>Show Business Impact:</strong> "Each query provides actionable insights for customer retention and growth..."</li>
+                <li><strong>Demonstrate Strategy:</strong> "The automated recommendations show how data drives business decisions..."</li>
+            </ol>
+        </div>
+
+        <div class="key-concepts">
+            <h3>Basic SQL Skills Demonstrated:</h3>
+            <ul>
+                <li><strong>Foundation (EASY):</strong> GROUP BY, COUNT(), SUM(), CASE WHEN, ORDER BY</li>
+                <li><strong>Intermediate (MEDIUM):</strong> MAX(), AVG(), LIMIT, date comparisons</li>
+                <li><strong>Advanced (MEDIUM-HARD):</strong> YEAR(), MONTH() functions, multiple GROUP BY</li>
+                <li><strong>Perfect for Beginners:</strong> Easy to understand and explain in interviews</li>
+            </ul>
+        </div>
+
+        <h2>🚀 Business Intelligence Value</h2>
+        
+        <div class="explanation">
+            <h3>Strategic Customer Intelligence:</h3>
+            <ul>
+                <li><strong>Customer Retention:</strong> Identify and nurture loyal customers for long-term growth</li>
+                <li><strong>Revenue Optimization:</strong> Prioritize high-value customers for retention investment</li>
+                <li><strong>Churn Prevention:</strong> Proactive campaigns to protect revenue and customer base</li>
+                <li><strong>Journey Optimization:</strong> Improve conversion funnel and customer experience</li>
+                <li><strong>Marketing Efficiency:</strong> Targeted strategies based on customer behavior patterns</li>
+            </ul>
+        </div>
+
+        <hr>
+        <p style="text-align: center; color: #6c757d; font-size: 12px;">
+            Customer Behavior Analytics | Created by Salomón Santiago Esquivel | Professional SQL Demonstration | 2025
+        </p>
+    </div>
+</body>
+</html>
