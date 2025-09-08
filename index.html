@@ -10,6 +10,31 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		
+		<!-- Google Analytics 4 -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-XXXXXXXXXX');
+			
+			// Track custom events
+			function trackClick(element_name, action) {
+				gtag('event', action, {
+					'custom_parameter': element_name
+				});
+			}
+		</script>
+		
+		<!-- Microsoft Clarity -->
+		<script type="text/javascript">
+			(function(c,l,a,r,i,t,y){
+				c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+				t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+				y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+			})(window, document, "clarity", "script", "YYYYYYYYYY");
+		</script>
 	</head>
 	<body class="is-preload">
 
@@ -43,7 +68,7 @@
 						
 						<p><strong>Core Expertise:</strong> SQL (Window Functions, Complex Joins, Business Intelligence), Excel (Advanced), Tableau, Python (API Integration, pandas, SQLite), Google Analytics 4 API, Salesforce, MongoDB | End-to-End Data Pipelines | ETL Processes | Data Governance | Financial Analytics | Sales Performance Analytics | Customer Behavior Intelligence | Market Intelligence | Customer Segmentation & Lifetime Value | Churn Prediction & Retention Analytics | Cross-Industry Analysis (Technology, Insurance, Manufacturing) | Bilingual (English/Spanish) for international projects.</p>
 						<ul class="actions">
-							<li><a href="#two" class="button">View My Projects</a></li>
+							<li><a href="#two" class="button" onclick="trackClick('view_projects_button', 'click')">View My Projects</a></li>
 						</ul>
 					</section>
 
@@ -59,7 +84,7 @@
 								<p><strong>End-to-End Data Pipeline:</strong> Complete sales performance analysis with real-time API data extraction, advanced SQL analytics, and business intelligence insights. Analyzed <strong>$589K+ sales volume</strong> across 30+ products, 30 customers, and 4 categories using progressive SQL complexity (basic → advanced).</p>
 								<p><em>Technologies: Python, SQL, DummyJSON API, SQLite, pandas</em></p>
 								<p><strong>Business Impact:</strong> Customer segmentation, revenue optimization, product performance ranking, and lifetime value analysis with actionable recommendations.</p>
-								<p><strong>Links:</strong> <a href="https://github.com/Salo996/Sales-Performance-Analytics" target="_blank">GitHub Repository</a> | <a href="https://github.com/Salo996/Sales-Performance-Analytics/blob/main/SQL_Queries_Documentation.html" target="_blank">SQL Documentation</a></p>
+								<p><strong>Links:</strong> <a href="https://github.com/Salo996/Sales-Performance-Analytics" target="_blank" onclick="trackClick('sales_github_repo', 'click')">GitHub Repository</a> | <a href="https://github.com/Salo996/Sales-Performance-Analytics/blob/main/SQL_Queries_Documentation.html" target="_blank" onclick="trackClick('sales_sql_docs', 'click')">SQL Documentation</a></p>
 							</article>
 							<article class="col-6 col-12-xsmall work-item">
 								<a href="images/fulls/customer-behavior-analytics-dashboard.png" class="image fit thumb">
@@ -69,7 +94,7 @@
 								<p><strong>Google Analytics 4 Powered Platform:</strong> Advanced customer intelligence using real-time GA4 BigQuery data. Features cohort retention analysis, behavioral segmentation, lifetime value optimization, churn prediction, and multi-touch attribution. Analyzed <strong>5,000+ customers</strong> across multiple behavioral segments with predictive analytics.</p>
 								<p><em>Technologies: Google Analytics 4 API, SQL (BigQuery), Python, Advanced Analytics</em></p>
 								<p><strong>Business Impact:</strong> Customer retention optimization, $180K churn risk identification, behavioral segmentation, and strategic intervention recommendations.</p>
-								<p><strong>Links:</strong> <a href="https://github.com/Salo996/Customer-Behavior-Analytics" target="_blank">GitHub Repository</a> | <a href="https://github.com/Salo996/Customer-Behavior-Analytics/blob/main/Customer_Behavior_SQL_Documentation.html" target="_blank">SQL Documentation</a></p>
+								<p><strong>Links:</strong> <a href="https://github.com/Salo996/Customer-Behavior-Analytics" target="_blank" onclick="trackClick('customer_github_repo', 'click')">GitHub Repository</a> | <a href="https://github.com/Salo996/Customer-Behavior-Analytics/blob/main/Customer_Behavior_SQL_Documentation.html" target="_blank" onclick="trackClick('customer_sql_docs', 'click')">SQL Documentation</a></p>
 							</article>
 							<article class="col-6 col-12-xsmall work-item">
 								<a href="images/fulls/market-intelligence-dashboard.jpg" class="image fit thumb">
@@ -78,7 +103,7 @@
 								<h3><a href="https://public.tableau.com/app/profile/salom.n.santiago/viz/MarketIntelligenceDashboard-SalomnSantiago/Dashboard2" target="_blank">Market Intelligence Dashboard</a></h3>
 								<p><strong>Real-Time Financial Analytics:</strong> Built comprehensive market intelligence platform analyzing $1.3 trillion in market cap across 15 technology companies. Features API integration, advanced SQL analytics, competitive analysis, and executive-level Tableau dashboards. <strong>1,350+ data points</strong> processed with 100% collection success rate.</p>
 								<p><em>Technologies: Python, SQL, Alpha Vantage API, Tableau Public, SQLite</em></p>
-								<p><strong>Links:</strong> <a href="https://public.tableau.com/app/profile/salom.n.santiago/viz/MarketIntelligenceDashboard-SalomnSantiago/Dashboard2" target="_blank">Live Dashboard</a> | <a href="https://github.com/Salo996/Market-Intelligence-dashboard" target="_blank">Source Code</a></p>
+								<p><strong>Links:</strong> <a href="https://public.tableau.com/app/profile/salom.n.santiago/viz/MarketIntelligenceDashboard-SalomnSantiago/Dashboard2" target="_blank" onclick="trackClick('tableau_dashboard', 'click')">Live Dashboard</a> | <a href="https://github.com/Salo996/Market-Intelligence-dashboard" target="_blank" onclick="trackClick('market_github_repo', 'click')">Source Code</a></p>
 							</article>
 							<article class="col-6 col-12-xsmall work-item">
 								<a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="Lenovo Operational Efficiency" /></a>
@@ -97,7 +122,7 @@
 							</article>
 						</div>
 						<ul class="actions">
-							<li><a href="resume.pdf" class="button">Download Resume</a></li>
+							<li><a href="resume.pdf" class="button" onclick="trackClick('download_resume', 'click')">Download Resume</a></li>
 						</ul>
 					</section>
 
@@ -128,15 +153,15 @@
 									</li>
 									<li>
 										<h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-										<a href="tel:+525519164142">+52 551916 4142</a>
+										<a href="tel:+525519164142" onclick="trackClick('phone_contact', 'click')">+52 551916 4142</a>
 									</li>
 									<li>
 										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-										<a href="mailto:salo.santiago96@gmail.com">salo.santiago96@gmail.com</a>
+										<a href="mailto:salo.santiago96@gmail.com" onclick="trackClick('email_contact', 'click')">salo.santiago96@gmail.com</a>
 									</li>
 									<li>
 										<h3 class="icon brands fa-linkedin"><span class="label">LinkedIn</span></h3>
-										<a href="https://www.linkedin.com/in/salomon-santiago-493002a7/">LinkedIn Profile</a>
+										<a href="https://www.linkedin.com/in/salomon-santiago-493002a7/" onclick="trackClick('linkedin_profile', 'click')">LinkedIn Profile</a>
 									</li>
 								</ul>
 							</div>
@@ -467,10 +492,10 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<footer id="footer">
 				<div class="inner">
 					<ul class="icons">
-						<li><a href="https://www.linkedin.com/in/salomon-santiago-493002a7/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						<li><a href="https://github.com/Salo996" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="mailto:salo.santiago96@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						<li><a href="resume.pdf" class="icon solid fa-download"><span class="label">Resume</span></a></li>
+						<li><a href="https://www.linkedin.com/in/salomon-santiago-493002a7/" class="icon brands fa-linkedin" onclick="trackClick('footer_linkedin', 'click')"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/Salo996" class="icon brands fa-github" onclick="trackClick('footer_github', 'click')"><span class="label">Github</span></a></li>
+						<li><a href="mailto:salo.santiago96@gmail.com" class="icon solid fa-envelope" onclick="trackClick('footer_email', 'click')"><span class="label">Email</span></a></li>
+						<li><a href="resume.pdf" class="icon solid fa-download" onclick="trackClick('footer_resume', 'click')"><span class="label">Resume</span></a></li>
 					</ul>
 					<ul class="copyright">
 						<li>&copy; 2025 Salomón Santiago Esquivel</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
