@@ -1,0 +1,16 @@
+Symbol,Company,MarketCap,Revenue,Employees,Sector,Industry,Country,Website,CollectionDate
+LNVGY,Lenovo Group Limited,17775878144,72459968512,72000,Technology,Computer Hardware,Hong Kong,https://www.lenovo.com,2025-09-01
+AAPL,Apple Inc.,3445050310656,408624988160,150000,Technology,Consumer Electronics,United States,https://www.apple.com,2025-09-01
+MSFT,Microsoft Corporation,3766312763392,281723994112,228000,Technology,Software - Infrastructure,United States,https://www.microsoft.com,2025-09-01
+HPQ,HP Inc.,26676396032,54711001088,58000,Technology,Computer Hardware,United States,https://www.hp.com,2025-09-01
+DELL,Dell Technologies Inc.,82620063744,101450997760,108000,Technology,Computer Hardware,United States,https://www.dell.com,2025-09-01
+IBM,International Business Machines,226815557632,64040001536,270300,Technology,Information Technology Services,United States,https://www.ibm.com,2025-09-01
+INTC,Intel Corporation,106579460096,53070000128,108900,Technology,Semiconductors,United States,https://www.intel.com,2025-09-01
+AMD,Advanced Micro Devices,263922483200,29600000000,28000,Technology,Semiconductors,United States,https://www.amd.com,2025-09-01
+NVDA,NVIDIA Corporation,4239080554496,165217992704,36000,Technology,Semiconductors,United States,https://www.nvidia.com,2025-09-01
+QCOM,Qualcomm Incorporated,173427671040,43256999936,49000,Technology,Semiconductors,United States,https://www.qualcomm.com,2025-09-01
+SONY,Sony Group Corporation,166666354688,13013317844992,112300,Technology,Consumer Electronics,Japan,https://www.sony.com,2025-09-01
+GOOGL,Alphabet Inc.,2578297651200,371399000064,187103,Communication Services,Internet Content & Information,United States,https://abc.xyz,2025-09-01
+AMZN,Amazon.com Inc.,2442261954560,670038032384,1546000,Consumer Cyclical,Internet Retail,United States,https://www.aboutamazon.com,2025-09-01
+TSLA,Tesla Inc.,1076855177216,92719996928,125665,Consumer Cyclical,Auto Manufacturers,United States,https://www.tesla.com,2025-09-01
+META,Meta Platforms Inc.,1855717900288,178803998720,75945,Communication Services,Internet Content & Information,United States,https://investor.atmeta.com,2025-09-01
