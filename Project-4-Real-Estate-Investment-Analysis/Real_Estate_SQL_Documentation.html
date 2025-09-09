@@ -348,7 +348,7 @@ LIMIT 20;</div>
         <div id="query3">
             <h2>Query 3: Investment ROI Calculator</h2>
             <div class="difficulty-medium">
-                <strong>Difficulty Level: MEDIUM</strong> | Financial calculations with CTEs
+                <strong>Difficulty Level: MEDIUM</strong> | Financial calculations and ROI metrics
             </div>
 
             <h3>Business Purpose</h3>
@@ -370,35 +370,12 @@ LIMIT 20;</div>
 
             <div class="query-block">
                 <h4>Advanced Financial Calculations</h4>
-                <div class="sql-code">WITH investment_metrics AS (
-    SELECT 
-        property_id,
-        address,
-        city,
-        state,
-        price,
-        bedrooms,
-        bathrooms,
-        square_feet,
-        estimated_rental_income,
-        property_taxes,
-        
-        -- Basic investment calculations
-        (estimated_rental_income * 12) as annual_rental_income,
-        (price * 0.20) as down_payment_20_percent,
-        (price * 0.80 * 0.045 / 12) as monthly_mortgage_payment, -- 4.5% interest
-        (property_taxes / 12) as monthly_property_taxes,
-        (estimated_rental_income * 0.08) as monthly_maintenance_reserve, -- 8% for maintenance
-        
-        -- Price per square foot
-        ROUND(price / NULLIF(square_feet, 0), 2) as price_per_sqft
-        
-    FROM properties 
-    WHERE price > 0 
-      AND estimated_rental_income > 0 
-      AND property_taxes > 0
-      AND square_feet > 0
-)
+                <div class="sql-code">-- Real Estate Investment Analysis - Query 3: Investment ROI Calculator
+-- Difficulty Level: MEDIUM
+-- Purpose: Calculate return on investment metrics for rental properties
+
+-- Description: ROI analysis with cap rates and cash flow calculations
+-- for rental property evaluation and investment decisions
 
 SELECT 
     property_id,
@@ -409,41 +386,50 @@ SELECT
     bedrooms,
     bathrooms,
     square_feet,
-    price_per_sqft,
-    
-    -- Rental metrics
     estimated_rental_income as monthly_rent,
-    annual_rental_income,
     
-    -- Investment calculations
-    down_payment_20_percent,
-    monthly_mortgage_payment,
-    monthly_property_taxes,
-    monthly_maintenance_reserve,
+    -- Annual rental income
+    (estimated_rental_income * 12) as annual_rental_income,
     
-    -- Total monthly expenses
-    (monthly_mortgage_payment + monthly_property_taxes + monthly_maintenance_reserve) as total_monthly_expenses,
+    -- Basic investment assumptions
+    (price * 0.20) as down_payment_20_percent,
+    (price * 0.80 * 0.045 / 12) as monthly_mortgage_payment, -- 4.5% interest rate
+    (property_taxes / 12) as monthly_property_taxes,
+    (estimated_rental_income * 0.08) as monthly_maintenance, -- 8% for maintenance
     
-    -- Monthly cash flow
-    (estimated_rental_income - (monthly_mortgage_payment + monthly_property_taxes + monthly_maintenance_reserve)) as monthly_cash_flow,
+    -- Monthly cash flow calculation
+    (estimated_rental_income - 
+     (price * 0.80 * 0.045 / 12) - 
+     (property_taxes / 12) - 
+     (estimated_rental_income * 0.08)
+    ) as monthly_cash_flow,
     
-    -- Annual cash flow
-    ((estimated_rental_income - (monthly_mortgage_payment + monthly_property_taxes + monthly_maintenance_reserve)) * 12) as annual_cash_flow,
+    -- Cap Rate: Annual rental income / Purchase price
+    ROUND((estimated_rental_income * 12) / price * 100, 2) as cap_rate_percent,
     
-    -- Cash-on-Cash Return (Annual cash flow / Down payment)
+    -- Cash-on-Cash Return: Annual cash flow / Down payment
     ROUND(
-        ((estimated_rental_income - (monthly_mortgage_payment + monthly_property_taxes + monthly_maintenance_reserve)) * 12) 
-        / NULLIF(down_payment_20_percent, 0) * 100, 2
+        ((estimated_rental_income - 
+          (price * 0.80 * 0.045 / 12) - 
+          (property_taxes / 12) - 
+          (estimated_rental_income * 0.08)
+         ) * 12) / (price * 0.20) * 100, 2
     ) as cash_on_cash_return_percent,
     
-    -- Cap Rate (Annual rental income / Purchase price)
-    ROUND(annual_rental_income / NULLIF(price, 0) * 100, 2) as cap_rate_percent,
-    
-    -- Rent-to-Price Ratio (Monthly rent / Purchase price)
-    ROUND(estimated_rental_income / NULLIF(price, 0) * 100, 4) as rent_to_price_ratio
+    -- Price per square foot
+    ROUND(price / square_feet, 2) as price_per_sqft
 
-FROM investment_metrics
-WHERE estimated_rental_income > (monthly_mortgage_payment + monthly_property_taxes + monthly_maintenance_reserve) -- Only profitable properties
+FROM properties 
+WHERE price > 0 
+  AND estimated_rental_income > 0 
+  AND property_taxes > 0
+  AND square_feet > 0
+  -- Only show profitable properties (positive cash flow)
+  AND (estimated_rental_income - 
+       (price * 0.80 * 0.045 / 12) - 
+       (property_taxes / 12) - 
+       (estimated_rental_income * 0.08)
+      ) > 0
 ORDER BY cash_on_cash_return_percent DESC
 LIMIT 25;</div>
             </div>
@@ -451,15 +437,15 @@ LIMIT 25;</div>
             <div class="explanation">
                 <h4>🔍 Step-by-Step Explanation:</h4>
                 <ol>
-                    <li><strong>CTE (investment_metrics):</strong> Creates a temporary table with calculated financial metrics</li>
+                    <li><strong>Annual rental income:</strong> Monthly rent × 12 for yearly cash flow projections</li>
                     <li><strong>Down payment calculation:</strong> 20% of purchase price for realistic financing</li>
                     <li><strong>Monthly mortgage payment:</strong> (Price × 80% × 4.5% interest) ÷ 12 months</li>
                     <li><strong>Monthly expenses:</strong> Property taxes ÷ 12 + maintenance reserve (8% of rent)</li>
                     <li><strong>Monthly cash flow:</strong> Rental income - all monthly expenses</li>
-                    <li><strong>Cash-on-Cash Return:</strong> (Annual cash flow ÷ Down payment) × 100</li>
                     <li><strong>Cap Rate:</strong> (Annual rental income ÷ Purchase price) × 100</li>
+                    <li><strong>Cash-on-Cash Return:</strong> (Annual cash flow ÷ Down payment) × 100</li>
+                    <li><strong>Price per sqft:</strong> Purchase price ÷ square footage for value comparison</li>
                     <li><strong>Profitability filter:</strong> Only shows properties with positive monthly cash flow</li>
-                    <li><strong>NULLIF protection:</strong> Prevents division by zero errors</li>
                 </ol>
             </div>
 
@@ -478,7 +464,7 @@ LIMIT 25;</div>
         <div id="query4">
             <h2>Query 4: Market Trends Analysis</h2>
             <div class="difficulty-medium">
-                <strong>Difficulty Level: MEDIUM</strong> | Time series analysis with window functions
+                <strong>Difficulty Level: MEDIUM</strong> | Market trends and seasonal analysis
             </div>
 
             <h3>Business Purpose</h3>
@@ -500,69 +486,68 @@ LIMIT 25;</div>
 
             <div class="query-block">
                 <h4>Time Series and Trend Analysis</h4>
-                <div class="sql-code">-- Historical price trends with quarter-over-quarter changes
-WITH quarterly_trends AS (
-    SELECT 
-        EXTRACT(YEAR FROM listing_date) as year,
-        EXTRACT(QUARTER FROM listing_date) as quarter,
-        COUNT(*) as listings_count,
-        AVG(price) as avg_price,
-        AVG(days_on_market) as avg_days_on_market,
-        AVG(price_per_sqft) as avg_price_per_sqft
-    FROM properties 
-    WHERE listing_date IS NOT NULL 
-      AND price > 0 
-      AND days_on_market > 0
-      AND listing_date >= '2020-01-01'  -- Focus on recent trends
-    GROUP BY EXTRACT(YEAR FROM listing_date), EXTRACT(QUARTER FROM listing_date)
-)
+                <div class="sql-code">-- Real Estate Investment Analysis - Query 4: Market Trends Analysis
+-- Difficulty Level: MEDIUM
+-- Purpose: Analyze market trends and seasonal patterns
+
+-- Business Question: What are the current market trends by season and location 
+-- to identify optimal buying/selling opportunities?
+
+-- Description: Quarterly price analysis, seasonal patterns, and market heat 
+-- indicators to guide investment timing decisions
 
 SELECT 
-    year,
-    quarter,
-    CONCAT('Q', quarter, ' ', year) as period,
-    listings_count,
-    ROUND(avg_price, 0) as avg_price,
-    ROUND(avg_days_on_market, 1) as avg_days_on_market,
-    ROUND(avg_price_per_sqft, 2) as avg_price_per_sqft,
+    EXTRACT(YEAR FROM listing_date) as year,
+    EXTRACT(QUARTER FROM listing_date) as quarter,
     
-    -- Quarter-over-quarter price change
-    ROUND(
-        (avg_price - LAG(avg_price) OVER (ORDER BY year, quarter)) 
-        / NULLIF(LAG(avg_price) OVER (ORDER BY year, quarter), 0) * 100, 2
-    ) as qoq_price_change_percent,
+    -- Season classification
+    CASE 
+        WHEN EXTRACT(MONTH FROM listing_date) IN (12, 1, 2) THEN 'Winter'
+        WHEN EXTRACT(MONTH FROM listing_date) IN (3, 4, 5) THEN 'Spring'
+        WHEN EXTRACT(MONTH FROM listing_date) IN (6, 7, 8) THEN 'Summer'
+        WHEN EXTRACT(MONTH FROM listing_date) IN (9, 10, 11) THEN 'Fall'
+    END as season,
     
-    -- Market velocity indicator (inverse of days on market)
-    ROUND(1.0 / NULLIF(avg_days_on_market, 0) * 1000, 2) as market_velocity_index
+    -- Basic market metrics
+    COUNT(*) as listings_count,
+    ROUND(AVG(price), 0) as avg_price,
+    ROUND(AVG(days_on_market), 1) as avg_days_on_market,
+    ROUND(AVG(price / square_feet), 2) as avg_price_per_sqft,
     
-FROM quarterly_trends
-ORDER BY year DESC, quarter DESC;
-
--- Market heat analysis by region
-SELECT 
-    state,
-    city,
-    COUNT(*) as total_listings,
-    AVG(days_on_market) as avg_days_on_market,
-    AVG(price) as avg_price,
+    -- Market velocity indicator (higher = faster market)
+    ROUND(1000.0 / AVG(days_on_market), 2) as market_velocity_index,
     
-    -- Market classification
+    -- Market classification based on days on market
     CASE 
         WHEN AVG(days_on_market) <= 30 THEN 'Hot Market'
-        WHEN AVG(days_on_market) <= 60 THEN 'Warm Market'  
+        WHEN AVG(days_on_market) <= 60 THEN 'Warm Market'
         WHEN AVG(days_on_market) <= 90 THEN 'Balanced Market'
         ELSE 'Cold Market'
     END as market_temperature,
     
-    -- Supply-demand indicator
-    ROUND(COUNT(*) / NULLIF(AVG(days_on_market), 0), 2) as supply_demand_ratio
+    -- Seasonal opportunity score (lower price + faster sales = better for buyers)
+    ROUND(
+        (1000.0 / AVG(days_on_market)) * 
+        (1.0 / (AVG(price) / 100000)), 2
+    ) as buyer_opportunity_score
     
 FROM properties 
-WHERE listing_date >= CURRENT_DATE - INTERVAL '12 months'
+WHERE listing_date IS NOT NULL 
+  AND listing_date >= '2022-01-01'  -- Focus on recent trends
+  AND price > 0 
   AND days_on_market > 0
-GROUP BY state, city
-HAVING COUNT(*) >= 10  -- Only cities with significant data
-ORDER BY avg_days_on_market ASC
+  AND square_feet > 0
+GROUP BY 
+    EXTRACT(YEAR FROM listing_date), 
+    EXTRACT(QUARTER FROM listing_date),
+    CASE 
+        WHEN EXTRACT(MONTH FROM listing_date) IN (12, 1, 2) THEN 'Winter'
+        WHEN EXTRACT(MONTH FROM listing_date) IN (3, 4, 5) THEN 'Spring'
+        WHEN EXTRACT(MONTH FROM listing_date) IN (6, 7, 8) THEN 'Summer'
+        WHEN EXTRACT(MONTH FROM listing_date) IN (9, 10, 11) THEN 'Fall'
+    END
+HAVING COUNT(*) >= 5  -- Ensure statistical significance
+ORDER BY year DESC, quarter DESC
 LIMIT 20;</div>
             </div>
 
@@ -570,13 +555,13 @@ LIMIT 20;</div>
                 <h4>🔍 Step-by-Step Explanation:</h4>
                 <ol>
                     <li><strong>EXTRACT(YEAR/QUARTER):</strong> Groups data by time periods for trend analysis</li>
-                    <li><strong>CTE quarterly_trends:</strong> Calculates quarterly averages for price and market metrics</li>
-                    <li><strong>LAG() window function:</strong> Compares current quarter to previous quarter</li>
-                    <li><strong>QoQ price change:</strong> (Current - Previous) ÷ Previous × 100 for % change</li>
+                    <li><strong>Season classification:</strong> Groups months into seasons for seasonal pattern analysis</li>
+                    <li><strong>Basic market metrics:</strong> Counts listings, average price, and days on market</li>
                     <li><strong>Market velocity index:</strong> Higher values = faster sales (hot market)</li>
-                    <li><strong>Market temperature classification:</strong> Based on average days on market</li>
-                    <li><strong>Supply-demand ratio:</strong> Listings count ÷ days on market</li>
-                    <li><strong>12-month filter:</strong> Focus on recent market conditions</li>
+                    <li><strong>Market temperature classification:</strong> Based on average days on market thresholds</li>
+                    <li><strong>Buyer opportunity score:</strong> Combines market speed with price levels</li>
+                    <li><strong>Statistical significance:</strong> Only includes periods with 5+ listings</li>
+                    <li><strong>Recent focus:</strong> Analyzes trends from 2022 onwards for relevance</li>
                 </ol>
             </div>
 
@@ -589,7 +574,7 @@ LIMIT 20;</div>
         <div id="query5">
             <h2>Query 5: Advanced Investment Scoring Algorithm</h2>
             <div class="difficulty-hard">
-                <strong>Difficulty Level: MEDIUM-HARD</strong> | Multi-CTE complex business logic
+                <strong>Difficulty Level: MEDIUM-HARD</strong> | Advanced scoring algorithm with business logic
             </div>
 
             <h3>Business Purpose</h3>
@@ -611,149 +596,15 @@ LIMIT 20;</div>
 
             <div class="query-block">
                 <h4>Multi-Factor Investment Scoring Algorithm</h4>
-                <div class="sql-code">WITH property_metrics AS (
-    SELECT 
-        p.*,
-        m.avg_area_price,
-        m.market_trend,
-        m.area_appreciation_rate,
-        e.unemployment_rate,
-        e.crime_rate,
-        e.school_rating,
-        
-        -- Financial metrics
-        (p.estimated_rental_income * 12) as annual_rental_income,
-        (p.price * 0.20) as down_payment,
-        (p.estimated_rental_income * 12 / NULLIF(p.price, 0) * 100) as cap_rate,
-        
-        -- Location metrics  
-        (p.price / NULLIF(m.avg_area_price, 0)) as price_to_area_avg_ratio,
-        
-        -- Cash flow calculations
-        (p.estimated_rental_income - 
-         (p.price * 0.80 * 0.045 / 12) -  -- Mortgage payment
-         (p.property_taxes / 12) -         -- Monthly taxes
-         (p.estimated_rental_income * 0.10) -- Maintenance/vacancy reserve
-        ) as monthly_cash_flow
-        
-    FROM properties p
-    LEFT JOIN market_data m ON p.zip_code = m.zip_code
-    LEFT JOIN economic_indicators e ON p.zip_code = e.zip_code
-    WHERE p.price > 0 
-      AND p.estimated_rental_income > 0
-      AND p.square_feet > 0
-),
+                <div class="sql-code">-- Real Estate Investment Analysis - Query 5: Advanced Investment Scoring
+-- Difficulty Level: MEDIUM-HARD
+-- Purpose: Create comprehensive investment scoring system
 
-scored_properties AS (
-    SELECT 
-        *,
-        
-        -- Scoring components (0-100 scale each)
-        
-        -- 1. Cash Flow Score (25% weight)
-        CASE 
-            WHEN monthly_cash_flow <= 0 THEN 0
-            WHEN monthly_cash_flow >= 1000 THEN 100
-            ELSE ROUND(monthly_cash_flow / 10, 0)
-        END as cash_flow_score,
-        
-        -- 2. Cap Rate Score (20% weight) 
-        CASE 
-            WHEN cap_rate <= 3 THEN 20
-            WHEN cap_rate >= 12 THEN 100
-            ELSE ROUND(20 + (cap_rate - 3) * 80 / 9, 0)
-        END as cap_rate_score,
-        
-        -- 3. Location Desirability Score (25% weight)
-        ROUND(
-            (CASE WHEN school_rating IS NOT NULL THEN school_rating ELSE 5 END * 10) +  -- School rating (0-10 scale)
-            (CASE 
-                WHEN crime_rate <= 2 THEN 30
-                WHEN crime_rate <= 5 THEN 20  
-                WHEN crime_rate <= 8 THEN 10
-                ELSE 0 
-            END) +  -- Crime safety score
-            (CASE 
-                WHEN unemployment_rate <= 3 THEN 20
-                WHEN unemployment_rate <= 6 THEN 15
-                WHEN unemployment_rate <= 10 THEN 10
-                ELSE 5
-            END), 0  -- Economic stability score
-        ) as location_score,
-        
-        -- 4. Market Conditions Score (15% weight)
-        CASE 
-            WHEN market_trend = 'Strong Growth' THEN 90
-            WHEN market_trend = 'Moderate Growth' THEN 70
-            WHEN market_trend = 'Stable' THEN 50
-            WHEN market_trend = 'Declining' THEN 20
-            ELSE 40
-        END as market_score,
-        
-        -- 5. Value Score - Price relative to area (15% weight)
-        CASE 
-            WHEN price_to_area_avg_ratio <= 0.8 THEN 100  -- 20% below area average
-            WHEN price_to_area_avg_ratio <= 0.9 THEN 80   -- 10% below area average  
-            WHEN price_to_area_avg_ratio <= 1.1 THEN 60   -- Within 10% of average
-            WHEN price_to_area_avg_ratio <= 1.2 THEN 40   -- 20% above average
-            ELSE 20  -- More than 20% above average
-        END as value_score
-        
-    FROM property_metrics
-    WHERE monthly_cash_flow IS NOT NULL
-),
+-- Business Question: Which properties offer the best overall investment potential
+-- considering cash flow, cap rate, location, and market factors?
 
-final_scoring AS (
-    SELECT 
-        property_id,
-        address,
-        city,
-        state,
-        zip_code,
-        price,
-        bedrooms,
-        bathrooms,
-        square_feet,
-        estimated_rental_income,
-        monthly_cash_flow,
-        cap_rate,
-        
-        -- Individual scores
-        cash_flow_score,
-        cap_rate_score, 
-        location_score,
-        market_score,
-        value_score,
-        
-        -- Weighted composite score
-        ROUND(
-            (cash_flow_score * 0.25) +
-            (cap_rate_score * 0.20) +
-            (location_score * 0.25) +
-            (market_score * 0.15) +
-            (value_score * 0.15), 1
-        ) as composite_investment_score,
-        
-        -- Risk assessment
-        CASE 
-            WHEN monthly_cash_flow < 200 THEN 'High Risk'
-            WHEN cap_rate < 5 THEN 'Medium-High Risk'
-            WHEN location_score < 40 THEN 'Medium Risk'
-            WHEN market_score < 50 THEN 'Medium Risk'
-            ELSE 'Low-Medium Risk'
-        END as risk_level,
-        
-        -- Investment recommendation
-        CASE 
-            WHEN monthly_cash_flow > 400 AND cap_rate > 7 AND location_score > 60 THEN 'Strong Buy'
-            WHEN monthly_cash_flow > 200 AND cap_rate > 6 AND location_score > 50 THEN 'Buy' 
-            WHEN monthly_cash_flow > 100 AND cap_rate > 5 THEN 'Consider'
-            WHEN monthly_cash_flow > 0 THEN 'Marginal'
-            ELSE 'Avoid'
-        END as investment_recommendation
-        
-    FROM scored_properties
-)
+-- Description: Multi-factor scoring algorithm that combines financial metrics,
+-- location quality, and market conditions to rank investment opportunities
 
 SELECT 
     property_id,
@@ -761,56 +612,291 @@ SELECT
     city,
     state,
     zip_code,
-    CONCAT('$', FORMAT(price, 0)) as formatted_price,
+    price,
     bedrooms,
     bathrooms,
     square_feet,
-    CONCAT('$', FORMAT(estimated_rental_income, 0)) as monthly_rent,
-    CONCAT('$', FORMAT(monthly_cash_flow, 0)) as monthly_cash_flow,
-    ROUND(cap_rate, 2) as cap_rate_percent,
-    composite_investment_score,
-    risk_level,
-    investment_recommendation,
+    estimated_rental_income,
     
-    -- Score breakdown for transparency
-    CONCAT(
-        'CF:', cash_flow_score, ' ',
-        'CR:', cap_rate_score, ' ', 
-        'LOC:', location_score, ' ',
-        'MKT:', market_score, ' ',
-        'VAL:', value_score
-    ) as score_breakdown
+    -- Financial calculations
+    (estimated_rental_income * 12) as annual_rental_income,
+    (price * 0.20) as down_payment_20_percent,
+    ROUND((estimated_rental_income * 12 / price * 100), 2) as cap_rate,
     
-FROM final_scoring
-WHERE composite_investment_score > 50  -- Only show decent opportunities
-ORDER BY composite_investment_score DESC, monthly_cash_flow DESC
-LIMIT 30;</div>
+    -- Monthly cash flow calculation
+    (estimated_rental_income - 
+     (price * 0.80 * 0.045 / 12) -     -- Mortgage payment at 4.5%
+     (property_taxes / 12) -           -- Monthly property taxes
+     (estimated_rental_income * 0.08)  -- Maintenance reserve (8%)
+    ) as monthly_cash_flow,
+    
+    -- SCORING SYSTEM (0-100 scale for each component)
+    
+    -- 1. Cash Flow Score (30% weight)
+    CASE 
+        WHEN (estimated_rental_income - 
+              (price * 0.80 * 0.045 / 12) - 
+              (property_taxes / 12) - 
+              (estimated_rental_income * 0.08)) <= 0 THEN 0
+        WHEN (estimated_rental_income - 
+              (price * 0.80 * 0.045 / 12) - 
+              (property_taxes / 12) - 
+              (estimated_rental_income * 0.08)) >= 1000 THEN 100
+        ELSE ROUND((estimated_rental_income - 
+                   (price * 0.80 * 0.045 / 12) - 
+                   (property_taxes / 12) - 
+                   (estimated_rental_income * 0.08)) / 10, 0)
+    END as cash_flow_score,
+    
+    -- 2. Cap Rate Score (25% weight)
+    CASE 
+        WHEN (estimated_rental_income * 12 / price * 100) <= 3 THEN 20
+        WHEN (estimated_rental_income * 12 / price * 100) >= 10 THEN 100
+        ELSE ROUND(20 + ((estimated_rental_income * 12 / price * 100) - 3) * 80 / 7, 0)
+    END as cap_rate_score,
+    
+    -- 3. Property Value Score (20% weight) - Based on price per sqft
+    CASE 
+        WHEN (price / square_feet) <= 100 THEN 100  -- Very affordable
+        WHEN (price / square_feet) <= 150 THEN 80   -- Affordable
+        WHEN (price / square_feet) <= 200 THEN 60   -- Market rate
+        WHEN (price / square_feet) <= 300 THEN 40   -- Above market
+        ELSE 20  -- Expensive
+    END as value_score,
+    
+    -- 4. Property Size Score (15% weight) 
+    CASE 
+        WHEN square_feet >= 2000 THEN 90  -- Large property
+        WHEN square_feet >= 1500 THEN 80  -- Good size
+        WHEN square_feet >= 1200 THEN 70  -- Average size
+        WHEN square_feet >= 900 THEN 50   -- Small
+        ELSE 30  -- Very small
+    END as size_score,
+    
+    -- 5. Rent-to-Price Ratio Score (10% weight)
+    CASE 
+        WHEN (estimated_rental_income / (price / 1000)) >= 1.5 THEN 100  -- Excellent rent ratio
+        WHEN (estimated_rental_income / (price / 1000)) >= 1.2 THEN 80   -- Good rent ratio
+        WHEN (estimated_rental_income / (price / 1000)) >= 1.0 THEN 60   -- Fair rent ratio
+        WHEN (estimated_rental_income / (price / 1000)) >= 0.8 THEN 40   -- Poor rent ratio
+        ELSE 20  -- Very poor rent ratio
+    END as rent_ratio_score,
+    
+    -- COMPOSITE INVESTMENT SCORE (weighted average)
+    ROUND(
+        (CASE 
+            WHEN (estimated_rental_income - 
+                  (price * 0.80 * 0.045 / 12) - 
+                  (property_taxes / 12) - 
+                  (estimated_rental_income * 0.08)) <= 0 THEN 0
+            WHEN (estimated_rental_income - 
+                  (price * 0.80 * 0.045 / 12) - 
+                  (property_taxes / 12) - 
+                  (estimated_rental_income * 0.08)) >= 1000 THEN 100
+            ELSE ROUND((estimated_rental_income - 
+                       (price * 0.80 * 0.045 / 12) - 
+                       (property_taxes / 12) - 
+                       (estimated_rental_income * 0.08)) / 10, 0)
+        END * 0.30) +
+        
+        (CASE 
+            WHEN (estimated_rental_income * 12 / price * 100) <= 3 THEN 20
+            WHEN (estimated_rental_income * 12 / price * 100) >= 10 THEN 100
+            ELSE ROUND(20 + ((estimated_rental_income * 12 / price * 100) - 3) * 80 / 7, 0)
+        END * 0.25) +
+        
+        (CASE 
+            WHEN (price / square_feet) <= 100 THEN 100
+            WHEN (price / square_feet) <= 150 THEN 80
+            WHEN (price / square_feet) <= 200 THEN 60
+            WHEN (price / square_feet) <= 300 THEN 40
+            ELSE 20
+        END * 0.20) +
+        
+        (CASE 
+            WHEN square_feet >= 2000 THEN 90
+            WHEN square_feet >= 1500 THEN 80
+            WHEN square_feet >= 1200 THEN 70
+            WHEN square_feet >= 900 THEN 50
+            ELSE 30
+        END * 0.15) +
+        
+        (CASE 
+            WHEN (estimated_rental_income / (price / 1000)) >= 1.5 THEN 100
+            WHEN (estimated_rental_income / (price / 1000)) >= 1.2 THEN 80
+            WHEN (estimated_rental_income / (price / 1000)) >= 1.0 THEN 60
+            WHEN (estimated_rental_income / (price / 1000)) >= 0.8 THEN 40
+            ELSE 20
+        END * 0.10), 1
+    ) as composite_investment_score,
+    
+    -- Investment recommendation based on composite score
+    CASE 
+        WHEN ROUND(
+            (CASE 
+                WHEN (estimated_rental_income - 
+                      (price * 0.80 * 0.045 / 12) - 
+                      (property_taxes / 12) - 
+                      (estimated_rental_income * 0.08)) <= 0 THEN 0
+                WHEN (estimated_rental_income - 
+                      (price * 0.80 * 0.045 / 12) - 
+                      (property_taxes / 12) - 
+                      (estimated_rental_income * 0.08)) >= 1000 THEN 100
+                ELSE ROUND((estimated_rental_income - 
+                           (price * 0.80 * 0.045 / 12) - 
+                           (property_taxes / 12) - 
+                           (estimated_rental_income * 0.08)) / 10, 0)
+            END * 0.30) +
+            (CASE 
+                WHEN (estimated_rental_income * 12 / price * 100) <= 3 THEN 20
+                WHEN (estimated_rental_income * 12 / price * 100) >= 10 THEN 100
+                ELSE ROUND(20 + ((estimated_rental_income * 12 / price * 100) - 3) * 80 / 7, 0)
+            END * 0.25) +
+            (CASE 
+                WHEN (price / square_feet) <= 100 THEN 100
+                WHEN (price / square_feet) <= 150 THEN 80
+                WHEN (price / square_feet) <= 200 THEN 60
+                WHEN (price / square_feet) <= 300 THEN 40
+                ELSE 20
+            END * 0.20) +
+            (CASE 
+                WHEN square_feet >= 2000 THEN 90
+                WHEN square_feet >= 1500 THEN 80
+                WHEN square_feet >= 1200 THEN 70
+                WHEN square_feet >= 900 THEN 50
+                ELSE 30
+            END * 0.15) +
+            (CASE 
+                WHEN (estimated_rental_income / (price / 1000)) >= 1.5 THEN 100
+                WHEN (estimated_rental_income / (price / 1000)) >= 1.2 THEN 80
+                WHEN (estimated_rental_income / (price / 1000)) >= 1.0 THEN 60
+                WHEN (estimated_rental_income / (price / 1000)) >= 0.8 THEN 40
+                ELSE 20
+            END * 0.10), 1
+        ) >= 80 THEN 'Excellent Investment'
+        WHEN ROUND(
+            (CASE 
+                WHEN (estimated_rental_income - 
+                      (price * 0.80 * 0.045 / 12) - 
+                      (property_taxes / 12) - 
+                      (estimated_rental_income * 0.08)) <= 0 THEN 0
+                WHEN (estimated_rental_income - 
+                      (price * 0.80 * 0.045 / 12) - 
+                      (property_taxes / 12) - 
+                      (estimated_rental_income * 0.08)) >= 1000 THEN 100
+                ELSE ROUND((estimated_rental_income - 
+                           (price * 0.80 * 0.045 / 12) - 
+                           (property_taxes / 12) - 
+                           (estimated_rental_income * 0.08)) / 10, 0)
+            END * 0.30) +
+            (CASE 
+                WHEN (estimated_rental_income * 12 / price * 100) <= 3 THEN 20
+                WHEN (estimated_rental_income * 12 / price * 100) >= 10 THEN 100
+                ELSE ROUND(20 + ((estimated_rental_income * 12 / price * 100) - 3) * 80 / 7, 0)
+            END * 0.25) +
+            (CASE 
+                WHEN (price / square_feet) <= 100 THEN 100
+                WHEN (price / square_feet) <= 150 THEN 80
+                WHEN (price / square_feet) <= 200 THEN 60
+                WHEN (price / square_feet) <= 300 THEN 40
+                ELSE 20
+            END * 0.20) +
+            (CASE 
+                WHEN square_feet >= 2000 THEN 90
+                WHEN square_feet >= 1500 THEN 80
+                WHEN square_feet >= 1200 THEN 70
+                WHEN square_feet >= 900 THEN 50
+                ELSE 30
+            END * 0.15) +
+            (CASE 
+                WHEN (estimated_rental_income / (price / 1000)) >= 1.5 THEN 100
+                WHEN (estimated_rental_income / (price / 1000)) >= 1.2 THEN 80
+                WHEN (estimated_rental_income / (price / 1000)) >= 1.0 THEN 60
+                WHEN (estimated_rental_income / (price / 1000)) >= 0.8 THEN 40
+                ELSE 20
+            END * 0.10), 1
+        ) >= 65 THEN 'Good Investment'
+        WHEN ROUND(
+            (CASE 
+                WHEN (estimated_rental_income - 
+                      (price * 0.80 * 0.045 / 12) - 
+                      (property_taxes / 12) - 
+                      (estimated_rental_income * 0.08)) <= 0 THEN 0
+                WHEN (estimated_rental_income - 
+                      (price * 0.80 * 0.045 / 12) - 
+                      (property_taxes / 12) - 
+                      (estimated_rental_income * 0.08)) >= 1000 THEN 100
+                ELSE ROUND((estimated_rental_income - 
+                           (price * 0.80 * 0.045 / 12) - 
+                           (property_taxes / 12) - 
+                           (estimated_rental_income * 0.08)) / 10, 0)
+            END * 0.30) +
+            (CASE 
+                WHEN (estimated_rental_income * 12 / price * 100) <= 3 THEN 20
+                WHEN (estimated_rental_income * 12 / price * 100) >= 10 THEN 100
+                ELSE ROUND(20 + ((estimated_rental_income * 12 / price * 100) - 3) * 80 / 7, 0)
+            END * 0.25) +
+            (CASE 
+                WHEN (price / square_feet) <= 100 THEN 100
+                WHEN (price / square_feet) <= 150 THEN 80
+                WHEN (price / square_feet) <= 200 THEN 60
+                WHEN (price / square_feet) <= 300 THEN 40
+                ELSE 20
+            END * 0.20) +
+            (CASE 
+                WHEN square_feet >= 2000 THEN 90
+                WHEN square_feet >= 1500 THEN 80
+                WHEN square_feet >= 1200 THEN 70
+                WHEN square_feet >= 900 THEN 50
+                ELSE 30
+            END * 0.15) +
+            (CASE 
+                WHEN (estimated_rental_income / (price / 1000)) >= 1.5 THEN 100
+                WHEN (estimated_rental_income / (price / 1000)) >= 1.2 THEN 80
+                WHEN (estimated_rental_income / (price / 1000)) >= 1.0 THEN 60
+                WHEN (estimated_rental_income / (price / 1000)) >= 0.8 THEN 40
+                ELSE 20
+            END * 0.10), 1
+        ) >= 50 THEN 'Consider'
+        ELSE 'Avoid'
+    END as investment_recommendation
+
+FROM properties 
+WHERE price > 0 
+  AND estimated_rental_income > 0 
+  AND property_taxes > 0
+  AND square_feet > 0
+  -- Only show properties with positive cash flow
+  AND (estimated_rental_income - 
+       (price * 0.80 * 0.045 / 12) - 
+       (property_taxes / 12) - 
+       (estimated_rental_income * 0.08)) > 0
+ORDER BY composite_investment_score DESC
+LIMIT 25;</div>
             </div>
 
             <div class="explanation">
                 <h4>🔍 Step-by-Step Explanation:</h4>
                 <ol>
-                    <li><strong>Multi-CTE Structure:</strong> Three levels of data transformation for complex scoring</li>
-                    <li><strong>property_metrics CTE:</strong> Calculates base financial and location metrics</li>
-                    <li><strong>scored_properties CTE:</strong> Applies scoring logic (0-100) for each component</li>
-                    <li><strong>Cash Flow Score (25%):</strong> $1000+ monthly = 100 points, scaled down proportionally</li>
-                    <li><strong>Cap Rate Score (20%):</strong> 12%+ cap rate = 100 points, 3% = 20 points</li>
-                    <li><strong>Location Score (25%):</strong> Combines school rating + crime safety + economic stability</li>
-                    <li><strong>Market Score (15%):</strong> Growth trend classification (Strong/Moderate/Stable/Declining)</li>
-                    <li><strong>Value Score (15%):</strong> Price relative to area average (below average = higher score)</li>
+                    <li><strong>Financial Calculations:</strong> Annual rental income, down payment, cap rate, and monthly cash flow</li>
+                    <li><strong>Cash Flow Score (30%):</strong> $1000+ monthly = 100 points, scaled down proportionally</li>
+                    <li><strong>Cap Rate Score (25%):</strong> 10%+ cap rate = 100 points, 3% = 20 points, linear scaling</li>
+                    <li><strong>Value Score (20%):</strong> Based on price per square foot thresholds ($100/sqft = 100 points)</li>
+                    <li><strong>Size Score (15%):</strong> Larger properties get higher scores (2000+ sqft = 90 points)</li>
+                    <li><strong>Rent Ratio Score (10%):</strong> Monthly rent to price ratio (1.5+ ratio = 100 points)</li>
                     <li><strong>Weighted Composite:</strong> Combines all scores with business-priority weighting</li>
-                    <li><strong>Risk Classification:</strong> Automated risk assessment based on key metrics</li>
-                    <li><strong>Investment Recommendations:</strong> Strong Buy/Buy/Consider/Marginal/Avoid categories</li>
+                    <li><strong>Investment Recommendations:</strong> Excellent/Good/Consider/Avoid based on composite score</li>
+                    <li><strong>Profitability Filter:</strong> Only shows properties with positive monthly cash flow</li>
                 </ol>
             </div>
 
             <div class="technical-note">
                 <h4>🔧 Algorithm Components:</h4>
                 <ul>
-                    <li><strong>Cash Flow Score (25%)</strong>: 0-100 scale based on monthly cash flow ($1000+ = 100)</li>
-                    <li><strong>Cap Rate Score (20%)</strong>: Scaled from 3% (score=20) to 12%+ (score=100)</li>
-                    <li><strong>Location Score (25%)</strong>: School ratings + crime safety + economic stability</li>
-                    <li><strong>Market + Value (30%)</strong>: Market conditions and price-to-area ratios</li>
+                    <li><strong>Cash Flow Score (30%)</strong>: 0-100 scale based on monthly cash flow ($1000+ = 100)</li>
+                    <li><strong>Cap Rate Score (25%)</strong>: Scaled from 3% (score=20) to 10%+ (score=100)</li>
+                    <li><strong>Value Score (20%)</strong>: Based on price per square foot thresholds</li>
+                    <li><strong>Size + Rent Ratio (25%)</strong>: Property size (15%) and rent-to-price ratio (10%)</li>
                 </ul>
             </div>
         </div>
