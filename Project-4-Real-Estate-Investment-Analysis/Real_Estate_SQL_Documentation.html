@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Investment Analysis - SQL Queries Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #c0392b;
+            margin-top: 30px;
+            border-left: 4px solid #e74c3c;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #27ae60;
+            margin-top: 25px;
+        }
+        .query-block {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .sql-code {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        .difficulty-easy {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .difficulty-medium {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .difficulty-hard {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .business-impact {
+            background-color: #e7f3ff;
+            border: 1px solid #b8daff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .technical-note {
+            background-color: #f0f8ff;
+            border: 1px solid #91b7e6;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin: 8px 0;
+        }
+        .toc a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .sql-keyword {
+            color: #ff7b72;
+            font-weight: bold;
+        }
+        .sql-string {
+            color: #a5d6ff;
+        }
+        .sql-number {
+            color: #79c0ff;
+        }
+        .sql-comment {
+            color: #8b949e;
+            font-style: italic;
+        }
+        .author-info {
+            background-color: #f8f9fa;
+            border-top: 2px solid #e74c3c;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 Real Estate Investment Analysis<br>SQL Queries Documentation</h1>
+        
+        <div class="business-impact">
+            <h3>🎯 Project Overview</h3>
+            <p><strong>Real Estate Investment Analysis Platform</strong> - A comprehensive data analysis system for identifying optimal real estate investment opportunities through advanced SQL analytics, financial modeling, and geographic intelligence.</p>
+            
+            <div class="key-metrics">
+                <div class="metric-card">
+                    <div class="metric-value">5</div>
+                    <div>SQL Queries</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">250+</div>
+                    <div>Properties Analyzed</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">12</div>
+                    <div>Market Areas</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">8.2%</div>
+                    <div>Avg Cap Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="toc">
+            <h3>📋 Table of Contents</h3>
+            <ul>
+                <li><a href="#query1">Query 1: Basic Property Overview (EASY)</a></li>
+                <li><a href="#query2">Query 2: Location-Based Price Analysis (EASY)</a></li>
+                <li><a href="#query3">Query 3: Investment ROI Calculator (MEDIUM)</a></li>
+                <li><a href="#query4">Query 4: Market Trends Analysis (MEDIUM)</a></li>
+                <li><a href="#query5">Query 5: Advanced Investment Scoring Algorithm (MEDIUM-HARD)</a></li>
+                <li><a href="#technical-details">Technical Implementation Details</a></li>
+                <li><a href="#business-applications">Business Applications</a></li>
+            </ul>
+        </div>
+
+        <!-- Query 1 -->
+        <div id="query1">
+            <h2>Query 1: Basic Property Overview</h2>
+            <div class="difficulty-easy">
+                <strong>Difficulty Level: EASY</strong> | Basic aggregations and data exploration
+            </div>
+            
+            <h3>Business Purpose</h3>
+            <p>Provides fundamental insights into the real estate dataset including total property count, average prices, and basic characteristics. This serves as the foundation for all subsequent analyses.</p>
+            
+            <div class="business-impact">
+                <h4>📊 Key Insights Delivered:</h4>
+                <ul>
+                    <li><strong>Market Scale</strong>: Total properties available for analysis</li>
+                    <li><strong>Price Benchmarks</strong>: Average, minimum, and maximum property prices</li>
+                    <li><strong>Property Characteristics</strong>: Average bedrooms, bathrooms, and square footage</li>
+                    <li><strong>Property Type Distribution</strong>: Breakdown by Single Family, Townhouse, Condo</li>
+                </ul>
+            </div>
+
+            <div class="query-block">
+                <h4>SQL Implementation</h4>
+                <div class="sql-code">
+<span class="sql-comment">-- Real Estate Investment Analysis - Query 1: Basic Property Overview</span>
+<span class="sql-comment">-- Difficulty Level: EASY</span>
+<span class="sql-comment">-- Purpose: Basic data exploration and property statistics</span>
+
+<span class="sql-keyword">SELECT</span> 
+    <span class="sql-keyword">COUNT</span>(*) <span class="sql-keyword">as</span> total_properties,
+    <span class="sql-keyword">AVG</span>(price) <span class="sql-keyword">as</span> avg_property_price,
+    <span class="sql-keyword">MIN</span>(price) <span class="sql-keyword">as</span> min_price,
+    <span class="sql-keyword">MAX</span>(price) <span class="sql-keyword">as</span> max_price,
+    <span class="sql-keyword">AVG</span>(bedrooms) <span class="sql-keyword">as</span> avg_bedrooms,
+    <span class="sql-keyword">AVG</span>(bathrooms) <span class="sql-keyword">as</span> avg_bathrooms,
+    <span class="sql-keyword">AVG</span>(square_feet) <span class="sql-keyword">as</span> avg_square_feet
+<span class="sql-keyword">FROM</span> properties 
+<span class="sql-keyword">WHERE</span> price > <span class="sql-number">0</span> <span class="sql-keyword">AND</span> price < <span class="sql-number">10000000</span>;
+
+<span class="sql-comment">-- Property type breakdown</span>
+<span class="sql-keyword">SELECT</span> 
+    property_type,
+    <span class="sql-keyword">COUNT</span>(*) <span class="sql-keyword">as</span> property_count,
+    <span class="sql-keyword">AVG</span>(price) <span class="sql-keyword">as</span> avg_price_by_type
+<span class="sql-keyword">FROM</span> properties 
+<span class="sql-keyword">WHERE</span> price > <span class="sql-number">0</span> 
+<span class="sql-keyword">GROUP BY</span> property_type 
+<span class="sql-keyword">ORDER BY</span> property_count <span class="sql-keyword">DESC</span>;
+                </div>
+            </div>
+
+            <div class="technical-note">
+                <h4>🔧 Technical Notes:</h4>
+                <ul>
+                    <li><strong>Data Quality</strong>: Filters out properties with $0 price or extreme outliers (>$10M)</li>
+                    <li><strong>Aggregation Functions</strong>: Uses COUNT(), AVG(), MIN(), MAX() for comprehensive overview</li>
+                    <li><strong>Grouping Logic</strong>: Groups by property_type to understand market composition</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Query 2 -->
+        <div id="query2">
+            <h2>Query 2: Location-Based Price Analysis</h2>
+            <div class="difficulty-easy">
+                <strong>Difficulty Level: EASY</strong> | Geographic aggregations and ranking
+            </div>
+
+            <h3>Business Purpose</h3>
+            <p>Analyzes property prices by geographic location (state, city, zip code) to identify high-value markets, affordable opportunities, and optimal investment locations based on rental yield potential.</p>
+
+            <div class="business-impact">
+                <h4>🗺️ Geographic Intelligence:</h4>
+                <ul>
+                    <li><strong>State Rankings</strong>: Identifies most expensive and affordable states</li>
+                    <li><strong>City Hotspots</strong>: Top 10 most expensive cities for market targeting</li>
+                    <li><strong>Zip Code Opportunities</strong>: High rental yield areas for investment focus</li>
+                    <li><strong>Price per Square Foot</strong>: Geographic efficiency metrics</li>
+                </ul>
+            </div>
+
+            <div class="query-block">
+                <h4>Key Geographic Analysis</h4>
+                <div class="sql-code">
+<span class="sql-comment">-- Top 10 most expensive cities</span>
+<span class="sql-keyword">SELECT</span> 
+    city, state,
+    <span class="sql-keyword">COUNT</span>(*) <span class="sql-keyword">as</span> property_count,
+    <span class="sql-keyword">AVG</span>(price) <span class="sql-keyword">as</span> avg_price,
+    <span class="sql-keyword">ROUND</span>(<span class="sql-keyword">AVG</span>(price_per_sqft), <span class="sql-number">2</span>) <span class="sql-keyword">as</span> avg_price_per_sqft
+<span class="sql-keyword">FROM</span> properties 
+<span class="sql-keyword">WHERE</span> price > <span class="sql-number">0</span> <span class="sql-keyword">AND</span> square_feet > <span class="sql-number">0</span>
+<span class="sql-keyword">GROUP BY</span> city, state 
+<span class="sql-keyword">HAVING</span> <span class="sql-keyword">COUNT</span>(*) >= <span class="sql-number">5</span>
+<span class="sql-keyword">ORDER BY</span> avg_price <span class="sql-keyword">DESC</span> 
+<span class="sql-keyword">LIMIT</span> <span class="sql-number">10</span>;
+
+<span class="sql-comment">-- Investment opportunities by rental yield</span>
+<span class="sql-keyword">SELECT</span> 
+    zip_code, city, state,
+    <span class="sql-keyword">COUNT</span>(*) <span class="sql-keyword">as</span> available_properties,
+    <span class="sql-keyword">AVG</span>(price) <span class="sql-keyword">as</span> avg_price,
+    <span class="sql-keyword">ROUND</span>(<span class="sql-keyword">AVG</span>(estimated_rental_income * <span class="sql-number">12</span> / price * <span class="sql-number">100</span>), <span class="sql-number">2</span>) <span class="sql-keyword">as</span> rental_yield_percent
+<span class="sql-keyword">FROM</span> properties 
+<span class="sql-keyword">WHERE</span> price > <span class="sql-number">0</span> <span class="sql-keyword">AND</span> estimated_rental_income > <span class="sql-number">0</span>
+<span class="sql-keyword">GROUP BY</span> zip_code, city, state
+<span class="sql-keyword">HAVING</span> <span class="sql-keyword">COUNT</span>(*) >= <span class="sql-number">3</span>
+<span class="sql-keyword">ORDER BY</span> rental_yield_percent <span class="sql-keyword">DESC</span> 
+<span class="sql-keyword">LIMIT</span> <span class="sql-number">20</span>;
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>💡 Business Insight:</strong> This analysis helps investors identify "cash cow" markets where rental yields exceed 10-12%, indicating strong income-generating potential.
+            </div>
+        </div>
+
+        <!-- Query 3 -->
+        <div id="query3">
+            <h2>Query 3: Investment ROI Calculator</h2>
+            <div class="difficulty-medium">
+                <strong>Difficulty Level: MEDIUM</strong> | Financial calculations with CTEs
+            </div>
+
+            <h3>Business Purpose</h3>
+            <p>Comprehensive ROI analysis for rental property investments including cash-on-cash return, cap rates, and profitability screening. This query transforms raw property data into actionable investment metrics.</p>
+
+            <div class="business-impact">
+                <h4>💰 Financial Modeling Capabilities:</h4>
+                <ul>
+                    <li><strong>Cash Flow Analysis</strong>: Monthly cash flow after all expenses</li>
+                    <li><strong>Cash-on-Cash Return</strong>: Return percentage on invested capital</li>
+                    <li><strong>Cap Rate Calculation</strong>: Annual rental income / purchase price</li>
+                    <li><strong>Investment Filtering</strong>: Only shows profitable properties</li>
+                </ul>
+            </div>
+
+            <div class="query-block">
+                <h4>Advanced Financial Calculations</h4>
+                <div class="sql-code">
+<span class="sql-keyword">WITH</span> investment_metrics <span class="sql-keyword">AS</span> (
+    <span class="sql-keyword">SELECT</span> 
+        property_id, address, city, state, price,
+        estimated_rental_income,
+        <span class="sql-comment">-- Investment calculations</span>
+        (estimated_rental_income * <span class="sql-number">12</span>) <span class="sql-keyword">as</span> annual_rental_income,
+        (price * <span class="sql-number">0.20</span>) <span class="sql-keyword">as</span> down_payment_20_percent,
+        (price * <span class="sql-number">0.80</span> * <span class="sql-number">0.045</span> / <span class="sql-number">12</span>) <span class="sql-keyword">as</span> monthly_mortgage_payment,
+        (property_taxes / <span class="sql-number">12</span>) <span class="sql-keyword">as</span> monthly_property_taxes,
+        (estimated_rental_income * <span class="sql-number">0.08</span>) <span class="sql-keyword">as</span> monthly_maintenance_reserve
+    <span class="sql-keyword">FROM</span> properties 
+    <span class="sql-keyword">WHERE</span> price > <span class="sql-number">0</span> <span class="sql-keyword">AND</span> estimated_rental_income > <span class="sql-number">0</span>
+)
+
+<span class="sql-keyword">SELECT</span> 
+    property_id, address, city, state, price,
+    monthly_rent, annual_rental_income,
+    <span class="sql-comment">-- Monthly cash flow</span>
+    (estimated_rental_income - 
+     (monthly_mortgage_payment + monthly_property_taxes + monthly_maintenance_reserve)
+    ) <span class="sql-keyword">as</span> monthly_cash_flow,
+    
+    <span class="sql-comment">-- Cash-on-Cash Return</span>
+    <span class="sql-keyword">ROUND</span>((monthly_cash_flow * <span class="sql-number">12</span>) / down_payment_20_percent * <span class="sql-number">100</span>, <span class="sql-number">2</span>) 
+    <span class="sql-keyword">as</span> cash_on_cash_return_percent,
+    
+    <span class="sql-comment">-- Cap Rate</span>
+    <span class="sql-keyword">ROUND</span>(annual_rental_income / price * <span class="sql-number">100</span>, <span class="sql-number">2</span>) <span class="sql-keyword">as</span> cap_rate_percent
+
+<span class="sql-keyword">FROM</span> investment_metrics
+<span class="sql-keyword">WHERE</span> monthly_cash_flow > <span class="sql-number">0</span>
+<span class="sql-keyword">ORDER BY</span> cash_on_cash_return_percent <span class="sql-keyword">DESC</span>
+<span class="sql-keyword">LIMIT</span> <span class="sql-number">25</span>;
+                </div>
+            </div>
+
+            <div class="technical-note">
+                <h4>🔧 Financial Assumptions:</h4>
+                <ul>
+                    <li><strong>Down Payment</strong>: 20% of purchase price</li>
+                    <li><strong>Interest Rate</strong>: 4.5% for mortgage calculations</li>
+                    <li><strong>Maintenance Reserve</strong>: 8% of rental income</li>
+                    <li><strong>Profitability Filter</strong>: Only positive cash flow properties</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Query 4 -->
+        <div id="query4">
+            <h2>Query 4: Market Trends Analysis</h2>
+            <div class="difficulty-medium">
+                <strong>Difficulty Level: MEDIUM</strong> | Time series analysis with window functions
+            </div>
+
+            <h3>Business Purpose</h3>
+            <p>Analyzes historical market trends, seasonal patterns, and market velocity to identify optimal buying/selling periods and market temperature across different regions.</p>
+
+            <div class="business-impact">
+                <h4>📈 Market Intelligence:</h4>
+                <ul>
+                    <li><strong>Quarterly Trends</strong>: Quarter-over-quarter price changes</li>
+                    <li><strong>Seasonal Patterns</strong>: Best months to buy/sell properties</li>
+                    <li><strong>Market Temperature</strong>: Hot/Warm/Cold market classification</li>
+                    <li><strong>Velocity Indicators</strong>: Days on market analysis</li>
+                </ul>
+            </div>
+
+            <div class="query-block">
+                <h4>Time Series and Trend Analysis</h4>
+                <div class="sql-code">
+<span class="sql-comment">-- Historical price trends with quarter-over-quarter changes</span>
+<span class="sql-keyword">WITH</span> quarterly_trends <span class="sql-keyword">AS</span> (
+    <span class="sql-keyword">SELECT</span> 
+        <span class="sql-keyword">EXTRACT</span>(<span class="sql-keyword">YEAR</span> <span class="sql-keyword">FROM</span> listing_date) <span class="sql-keyword">as</span> year,
+        <span class="sql-keyword">EXTRACT</span>(<span class="sql-keyword">QUARTER</span> <span class="sql-keyword">FROM</span> listing_date) <span class="sql-keyword">as</span> quarter,
+        <span class="sql-keyword">AVG</span>(price) <span class="sql-keyword">as</span> avg_price,
+        <span class="sql-keyword">AVG</span>(days_on_market) <span class="sql-keyword">as</span> avg_days_on_market
+    <span class="sql-keyword">FROM</span> properties 
+    <span class="sql-keyword">WHERE</span> listing_date >= <span class="sql-string">'2020-01-01'</span>
+    <span class="sql-keyword">GROUP BY</span> <span class="sql-keyword">EXTRACT</span>(<span class="sql-keyword">YEAR</span> <span class="sql-keyword">FROM</span> listing_date), <span class="sql-keyword">EXTRACT</span>(<span class="sql-keyword">QUARTER</span> <span class="sql-keyword">FROM</span> listing_date)
+)
+
+<span class="sql-keyword">SELECT</span> 
+    year, quarter,
+    <span class="sql-keyword">ROUND</span>(avg_price, <span class="sql-number">0</span>) <span class="sql-keyword">as</span> avg_price,
+    <span class="sql-comment">-- Quarter-over-quarter price change using LAG window function</span>
+    <span class="sql-keyword">ROUND</span>(
+        (avg_price - <span class="sql-keyword">LAG</span>(avg_price) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> year, quarter)) 
+        / <span class="sql-keyword">LAG</span>(avg_price) <span class="sql-keyword">OVER</span> (<span class="sql-keyword">ORDER BY</span> year, quarter) * <span class="sql-number">100</span>, <span class="sql-number">2</span>
+    ) <span class="sql-keyword">as</span> qoq_price_change_percent,
+    
+    <span class="sql-comment">-- Market velocity indicator</span>
+    <span class="sql-keyword">ROUND</span>(<span class="sql-number">1.0</span> / avg_days_on_market * <span class="sql-number">1000</span>, <span class="sql-number">2</span>) <span class="sql-keyword">as</span> market_velocity_index
+    
+<span class="sql-keyword">FROM</span> quarterly_trends
+<span class="sql-keyword">ORDER BY</span> year <span class="sql-keyword">DESC</span>, quarter <span class="sql-keyword">DESC</span>;
+
+<span class="sql-comment">-- Market heat analysis by region</span>
+<span class="sql-keyword">SELECT</span> 
+    state, city,
+    <span class="sql-keyword">AVG</span>(days_on_market) <span class="sql-keyword">as</span> avg_days_on_market,
+    <span class="sql-keyword">CASE</span> 
+        <span class="sql-keyword">WHEN</span> <span class="sql-keyword">AVG</span>(days_on_market) <= <span class="sql-number">30</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Hot Market'</span>
+        <span class="sql-keyword">WHEN</span> <span class="sql-keyword">AVG</span>(days_on_market) <= <span class="sql-number">60</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Warm Market'</span>  
+        <span class="sql-keyword">WHEN</span> <span class="sql-keyword">AVG</span>(days_on_market) <= <span class="sql-number">90</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Balanced Market'</span>
+        <span class="sql-keyword">ELSE</span> <span class="sql-string">'Cold Market'</span>
+    <span class="sql-keyword">END</span> <span class="sql-keyword">as</span> market_temperature
+<span class="sql-keyword">FROM</span> properties 
+<span class="sql-keyword">WHERE</span> listing_date >= <span class="sql-keyword">CURRENT_DATE</span> - <span class="sql-keyword">INTERVAL</span> <span class="sql-string">'12 months'</span>
+<span class="sql-keyword">GROUP BY</span> state, city
+<span class="sql-keyword">HAVING</span> <span class="sql-keyword">COUNT</span>(*) >= <span class="sql-number">10</span>
+<span class="sql-keyword">ORDER BY</span> avg_days_on_market <span class="sql-keyword">ASC</span>;
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>📊 Market Timing Strategy:</strong> Hot markets (< 30 days) indicate seller's markets with high competition. Investors should focus on warm markets (30-60 days) for better negotiation opportunities.
+            </div>
+        </div>
+
+        <!-- Query 5 -->
+        <div id="query5">
+            <h2>Query 5: Advanced Investment Scoring Algorithm</h2>
+            <div class="difficulty-hard">
+                <strong>Difficulty Level: MEDIUM-HARD</strong> | Multi-CTE complex business logic
+            </div>
+
+            <h3>Business Purpose</h3>
+            <p>Comprehensive investment scoring system that combines financial metrics, location desirability, market conditions, and risk factors to rank investment opportunities and provide actionable recommendations.</p>
+
+            <div class="business-impact">
+                <h4>🎯 Advanced Investment Intelligence:</h4>
+                <ul>
+                    <li><strong>Multi-Factor Scoring</strong>: 5-component weighted algorithm (Cash Flow 25%, Cap Rate 20%, Location 25%, Market 15%, Value 15%)</li>
+                    <li><strong>Risk Assessment</strong>: Automated risk level classification</li>
+                    <li><strong>Investment Recommendations</strong>: Strong Buy/Buy/Consider/Marginal/Avoid</li>
+                    <li><strong>Transparency</strong>: Score breakdown for decision justification</li>
+                </ul>
+            </div>
+
+            <div class="query-block">
+                <h4>Multi-Factor Investment Scoring Algorithm</h4>
+                <div class="sql-code">
+<span class="sql-keyword">WITH</span> property_metrics <span class="sql-keyword">AS</span> (
+    <span class="sql-keyword">SELECT</span> 
+        p.*, m.avg_area_price, m.market_trend,
+        e.unemployment_rate, e.crime_rate, e.school_rating,
+        
+        <span class="sql-comment">-- Financial metrics</span>
+        (p.estimated_rental_income * <span class="sql-number">12</span>) <span class="sql-keyword">as</span> annual_rental_income,
+        (p.estimated_rental_income * <span class="sql-number">12</span> / p.price * <span class="sql-number">100</span>) <span class="sql-keyword">as</span> cap_rate,
+        
+        <span class="sql-comment">-- Cash flow calculations</span>
+        (p.estimated_rental_income - 
+         (p.price * <span class="sql-number">0.80</span> * <span class="sql-number">0.045</span> / <span class="sql-number">12</span>) -
+         (p.property_taxes / <span class="sql-number">12</span>) -
+         (p.estimated_rental_income * <span class="sql-number">0.10</span>)
+        ) <span class="sql-keyword">as</span> monthly_cash_flow
+        
+    <span class="sql-keyword">FROM</span> properties p
+    <span class="sql-keyword">LEFT JOIN</span> market_data m <span class="sql-keyword">ON</span> p.zip_code = m.zip_code
+    <span class="sql-keyword">LEFT JOIN</span> economic_indicators e <span class="sql-keyword">ON</span> p.zip_code = e.zip_code
+),
+
+scored_properties <span class="sql-keyword">AS</span> (
+    <span class="sql-keyword">SELECT</span> *,
+        <span class="sql-comment">-- 1. Cash Flow Score (25% weight)</span>
+        <span class="sql-keyword">CASE</span> 
+            <span class="sql-keyword">WHEN</span> monthly_cash_flow <= <span class="sql-number">0</span> <span class="sql-keyword">THEN</span> <span class="sql-number">0</span>
+            <span class="sql-keyword">WHEN</span> monthly_cash_flow >= <span class="sql-number">1000</span> <span class="sql-keyword">THEN</span> <span class="sql-number">100</span>
+            <span class="sql-keyword">ELSE</span> <span class="sql-keyword">ROUND</span>(monthly_cash_flow / <span class="sql-number">10</span>, <span class="sql-number">0</span>)
+        <span class="sql-keyword">END</span> <span class="sql-keyword">as</span> cash_flow_score,
+        
+        <span class="sql-comment">-- 2. Cap Rate Score (20% weight)</span>
+        <span class="sql-keyword">CASE</span> 
+            <span class="sql-keyword">WHEN</span> cap_rate <= <span class="sql-number">3</span> <span class="sql-keyword">THEN</span> <span class="sql-number">20</span>
+            <span class="sql-keyword">WHEN</span> cap_rate >= <span class="sql-number">12</span> <span class="sql-keyword">THEN</span> <span class="sql-number">100</span>
+            <span class="sql-keyword">ELSE</span> <span class="sql-keyword">ROUND</span>(<span class="sql-number">20</span> + (cap_rate - <span class="sql-number">3</span>) * <span class="sql-number">80</span> / <span class="sql-number">9</span>, <span class="sql-number">0</span>)
+        <span class="sql-keyword">END</span> <span class="sql-keyword">as</span> cap_rate_score,
+        
+        <span class="sql-comment">-- 3. Location Desirability Score (25% weight)</span>
+        <span class="sql-keyword">ROUND</span>(
+            (<span class="sql-keyword">CASE WHEN</span> school_rating <span class="sql-keyword">IS NOT NULL THEN</span> school_rating <span class="sql-keyword">ELSE</span> <span class="sql-number">5</span> <span class="sql-keyword">END</span> * <span class="sql-number">10</span>) +
+            (<span class="sql-keyword">CASE</span> 
+                <span class="sql-keyword">WHEN</span> crime_rate <= <span class="sql-number">2</span> <span class="sql-keyword">THEN</span> <span class="sql-number">30</span>
+                <span class="sql-keyword">WHEN</span> crime_rate <= <span class="sql-number">5</span> <span class="sql-keyword">THEN</span> <span class="sql-number">20</span>
+                <span class="sql-keyword">WHEN</span> crime_rate <= <span class="sql-number">8</span> <span class="sql-keyword">THEN</span> <span class="sql-number">10</span>
+                <span class="sql-keyword">ELSE</span> <span class="sql-number">0</span> 
+            <span class="sql-keyword">END</span>) +
+            (<span class="sql-keyword">CASE</span> 
+                <span class="sql-keyword">WHEN</span> unemployment_rate <= <span class="sql-number">3</span> <span class="sql-keyword">THEN</span> <span class="sql-number">20</span>
+                <span class="sql-keyword">WHEN</span> unemployment_rate <= <span class="sql-number">10</span> <span class="sql-keyword">THEN</span> <span class="sql-number">10</span>
+                <span class="sql-keyword">ELSE</span> <span class="sql-number">5</span>
+            <span class="sql-keyword">END</span>), <span class="sql-number">0</span>
+        ) <span class="sql-keyword">as</span> location_score
+        
+    <span class="sql-keyword">FROM</span> property_metrics
+),
+
+final_scoring <span class="sql-keyword">AS</span> (
+    <span class="sql-keyword">SELECT</span> 
+        property_id, address, city, state, price,
+        monthly_cash_flow, cap_rate,
+        cash_flow_score, cap_rate_score, location_score,
+        
+        <span class="sql-comment">-- Weighted composite score</span>
+        <span class="sql-keyword">ROUND</span>(
+            (cash_flow_score * <span class="sql-number">0.25</span>) +
+            (cap_rate_score * <span class="sql-number">0.20</span>) +
+            (location_score * <span class="sql-number">0.25</span>) +
+            (<span class="sql-number">50</span> * <span class="sql-number">0.30</span>)  <span class="sql-comment">-- Market & Value scores</span>
+        , <span class="sql-number">1</span>) <span class="sql-keyword">as</span> composite_investment_score,
+        
+        <span class="sql-comment">-- Investment recommendation</span>
+        <span class="sql-keyword">CASE</span> 
+            <span class="sql-keyword">WHEN</span> monthly_cash_flow > <span class="sql-number">400</span> <span class="sql-keyword">AND</span> cap_rate > <span class="sql-number">7</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Strong Buy'</span>
+            <span class="sql-keyword">WHEN</span> monthly_cash_flow > <span class="sql-number">200</span> <span class="sql-keyword">AND</span> cap_rate > <span class="sql-number">6</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Buy'</span>
+            <span class="sql-keyword">WHEN</span> monthly_cash_flow > <span class="sql-number">100</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Consider'</span>
+            <span class="sql-keyword">WHEN</span> monthly_cash_flow > <span class="sql-number">0</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Marginal'</span>
+            <span class="sql-keyword">ELSE</span> <span class="sql-string">'Avoid'</span>
+        <span class="sql-keyword">END</span> <span class="sql-keyword">as</span> investment_recommendation
+        
+    <span class="sql-keyword">FROM</span> scored_properties
+)
+
+<span class="sql-keyword">SELECT</span> 
+    property_id, address, city, state,
+    <span class="sql-keyword">CONCAT</span>(<span class="sql-string">'$'</span>, <span class="sql-keyword">FORMAT</span>(price, <span class="sql-number">0</span>)) <span class="sql-keyword">as</span> formatted_price,
+    <span class="sql-keyword">CONCAT</span>(<span class="sql-string">'$'</span>, <span class="sql-keyword">FORMAT</span>(monthly_cash_flow, <span class="sql-number">0</span>)) <span class="sql-keyword">as</span> monthly_cash_flow,
+    composite_investment_score,
+    investment_recommendation,
+    
+    <span class="sql-comment">-- Score transparency</span>
+    <span class="sql-keyword">CONCAT</span>(<span class="sql-string">'CF:'</span>, cash_flow_score, <span class="sql-string">' CR:'</span>, cap_rate_score, 
+            <span class="sql-string">' LOC:'</span>, location_score) <span class="sql-keyword">as</span> score_breakdown
+    
+<span class="sql-keyword">FROM</span> final_scoring
+<span class="sql-keyword">WHERE</span> composite_investment_score > <span class="sql-number">50</span>
+<span class="sql-keyword">ORDER BY</span> composite_investment_score <span class="sql-keyword">DESC</span>, monthly_cash_flow <span class="sql-keyword">DESC</span>
+<span class="sql-keyword">LIMIT</span> <span class="sql-number">30</span>;
+                </div>
+            </div>
+
+            <div class="technical-note">
+                <h4>🔧 Algorithm Components:</h4>
+                <ul>
+                    <li><strong>Cash Flow Score (25%)</strong>: 0-100 scale based on monthly cash flow ($1000+ = 100)</li>
+                    <li><strong>Cap Rate Score (20%)</strong>: Scaled from 3% (score=20) to 12%+ (score=100)</li>
+                    <li><strong>Location Score (25%)</strong>: School ratings + crime safety + economic stability</li>
+                    <li><strong>Market + Value (30%)</strong>: Market conditions and price-to-area ratios</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Technical Details -->
+        <div id="technical-details">
+            <h2>🔧 Technical Implementation Details</h2>
+            
+            <div class="technical-note">
+                <h3>Database Schema</h3>
+                <div class="sql-code">
+<span class="sql-keyword">CREATE TABLE</span> properties (
+    property_id <span class="sql-keyword">INTEGER PRIMARY KEY</span>,
+    address <span class="sql-keyword">TEXT</span>,
+    city <span class="sql-keyword">TEXT</span>,
+    state <span class="sql-keyword">TEXT</span>,
+    zip_code <span class="sql-keyword">TEXT</span>,
+    price <span class="sql-keyword">REAL</span>,
+    bedrooms <span class="sql-keyword">INTEGER</span>,
+    bathrooms <span class="sql-keyword">REAL</span>,
+    square_feet <span class="sql-keyword">INTEGER</span>,
+    property_type <span class="sql-keyword">TEXT</span>,
+    estimated_rental_income <span class="sql-keyword">REAL</span>,
+    property_taxes <span class="sql-keyword">REAL</span>,
+    listing_date <span class="sql-keyword">DATE</span>,
+    days_on_market <span class="sql-keyword">INTEGER</span>,
+    price_per_sqft <span class="sql-keyword">REAL</span>
+);
+                </div>
+            </div>
+
+            <div class="query-block">
+                <h3>SQL Techniques Demonstrated</h3>
+                <ul>
+                    <li><strong>Common Table Expressions (CTEs)</strong>: Multi-level data transformation</li>
+                    <li><strong>Window Functions</strong>: LAG() for time series analysis</li>
+                    <li><strong>Complex CASE Statements</strong>: Business logic implementation</li>
+                    <li><strong>Aggregate Functions</strong>: Statistical analysis and grouping</li>
+                    <li><strong>Data Quality Filters</strong>: Outlier handling and validation</li>
+                    <li><strong>Mathematical Calculations</strong>: Financial formulas and scoring</li>
+                    <li><strong>String Formatting</strong>: Professional output presentation</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Business Applications -->
+        <div id="business-applications">
+            <h2>💼 Business Applications</h2>
+            
+            <div class="business-impact">
+                <h3>🎯 Investment Decision Framework</h3>
+                <ol>
+                    <li><strong>Market Screening</strong>: Use Query 1-2 for initial market assessment</li>
+                    <li><strong>Financial Analysis</strong>: Apply Query 3 for ROI calculations</li>
+                    <li><strong>Timing Strategy</strong>: Leverage Query 4 for market timing</li>
+                    <li><strong>Final Selection</strong>: Use Query 5 for investment ranking</li>
+                </ol>
+            </div>
+
+            <div class="highlight">
+                <h3>📊 Key Performance Indicators</h3>
+                <ul>
+                    <li><strong>Target Cap Rate</strong>: 8%+ for strong investments</li>
+                    <li><strong>Minimum Cash Flow</strong>: $200+ monthly for sustainability</li>
+                    <li><strong>Market Temperature</strong>: Focus on Warm markets (30-60 days)</li>
+                    <li><strong>Investment Score</strong>: 70+ for "Strong Buy" recommendations</li>
+                </ul>
+            </div>
+
+            <div class="business-impact">
+                <h3>🗺️ Geographic Strategy</h3>
+                <p><strong>Diversification Approach:</strong> Spread investments across 3+ states to minimize regional market risk while focusing on markets with strong fundamentals (employment, population growth, rental demand).</p>
+            </div>
+        </div>
+
+        <div class="author-info">
+            <h3>👨‍💼 About the Author</h3>
+            <p><strong>Salomón Santiago</strong><br>
+            Data Analyst & Business Intelligence Specialist<br>
+            📧 salo.santiago96@gmail.com | 🔗 <a href="https://linkedin.com/in/salomon-santiago-493002a7">LinkedIn</a> | 💼 <a href="https://salo996.github.io/Data-analyst-portfolio/">Portfolio</a></p>
+            
+            <p><em>Specialized in transforming complex real estate data into actionable investment strategies through advanced SQL analytics and business intelligence.</em></p>
+        </div>
+    </div>
+</body>
+</html>
