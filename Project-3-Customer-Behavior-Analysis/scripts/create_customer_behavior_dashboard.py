@@ -303,14 +303,14 @@ class CustomerBehaviorDashboard:
         """Create executive summary visualization"""
         print("Creating executive summary chart...")
         
-        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 10))
+        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
         fig.patch.set_facecolor('white')
         
         fig.suptitle('Customer Behavior Analytics - Executive Summary\\nSalomón Santiago', 
-                     fontsize=16, fontweight='bold', y=0.98, color=self.colors['dark'])
+                     fontsize=16, fontweight='bold', y=0.95, color=self.colors['dark'])
         
-        # Adjust spacing to prevent title overlap - increase top margin significantly
-        plt.subplots_adjust(top=0.80, hspace=0.4, wspace=0.25)
+        # Adjust spacing to prevent title overlap - create much more space
+        plt.subplots_adjust(top=0.88, hspace=0.5, wspace=0.25, bottom=0.08)
         
         # Chart 1: Retention trends
         pivot_data = self.retention_df.pivot(index='cohort_month', columns='period', values='retention_rate')
