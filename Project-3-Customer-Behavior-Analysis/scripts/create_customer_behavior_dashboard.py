@@ -307,7 +307,10 @@ class CustomerBehaviorDashboard:
         fig.patch.set_facecolor('white')
         
         fig.suptitle('Customer Behavior Analytics - Executive Summary\\nSalomón Santiago', 
-                     fontsize=16, fontweight='bold', y=0.95, color=self.colors['dark'])
+                     fontsize=16, fontweight='bold', y=0.96, color=self.colors['dark'])
+        
+        # Adjust spacing to prevent title overlap
+        plt.subplots_adjust(top=0.85, hspace=0.3, wspace=0.25)
         
         # Chart 1: Retention trends
         pivot_data = self.retention_df.pivot(index='cohort_month', columns='period', values='retention_rate')
