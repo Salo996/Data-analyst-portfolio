@@ -91,50 +91,23 @@ def create_presentation_guide_pdf():
         leftIndent=15
     )
 
-    # COVER PAGE
-    elements.append(Spacer(1, 1.5*inch))
+    # COVER PAGE + PORTFOLIO OVERVIEW COMBINED
+    elements.append(Spacer(1, 1*inch))
     elements.append(Paragraph("Portfolio Presentation Guide", cover_title))
     elements.append(Paragraph("For Interview Success",
                              ParagraphStyle('Subtitle', parent=styles['Normal'],
                                           fontSize=18, alignment=TA_CENTER,
-                                          textColor=accent_blue, spaceAfter=40)))
+                                          textColor=accent_blue, spaceAfter=30)))
 
     elements.append(Paragraph("Salomón Santiago Esquivel",
                              ParagraphStyle('Name', parent=styles['Normal'],
                                           fontSize=16, alignment=TA_CENTER,
-                                          fontName='Helvetica-Bold', spaceAfter=10)))
+                                          fontName='Helvetica-Bold', spaceAfter=5)))
     elements.append(Paragraph("Data Analyst | 6+ Years Experience",
                              ParagraphStyle('Title', parent=styles['Normal'],
-                                          fontSize=12, alignment=TA_CENTER, spaceAfter=60)))
+                                          fontSize=12, alignment=TA_CENTER, spaceAfter=40)))
 
-    # Key sections overview
-    overview_data = [
-        ['What\'s Inside:', ''],
-        ['✓', 'Portfolio Overview (30-second pitch)'],
-        ['✓', '4 Projects with Natural Talking Points'],
-        ['✓', '30-Second & 2-Minute Versions'],
-        ['✓', 'Conversational KPI Explanations'],
-        ['✓', 'Technical Q&A Preparation'],
-        ['✓', 'Tips for Sounding Natural'],
-        ['✓', 'Practice Strategy']
-    ]
-    overview_table = Table(overview_data, colWidths=[0.4*inch, 5.5*inch])
-    overview_table.setStyle(TableStyle([
-        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, 0), 14),
-        ('TEXTCOLOR', (0, 0), (-1, 0), oxford_blue),
-        ('FONTSIZE', (0, 1), (-1, -1), 11),
-        ('TEXTCOLOR', (0, 1), (0, -1), success_green),
-        ('FONTNAME', (0, 1), (0, -1), 'Helvetica-Bold'),
-        ('LEFTPADDING', (0, 0), (-1, -1), 0),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
-        ('SPAN', (0, 0), (-1, 0))
-    ]))
-    elements.append(overview_table)
-
-    elements.append(PageBreak())
-
-    # PORTFOLIO OVERVIEW
+    # PORTFOLIO OVERVIEW ON SAME PAGE
     elements.append(Paragraph("🎯 Portfolio Overview", section_title))
     elements.append(Paragraph("When they ask: <b>\"Do you have any projects to show?\"</b>", body_text))
     elements.append(Spacer(1, 0.1*inch))
@@ -176,23 +149,26 @@ def create_presentation_guide_pdf():
     elements.append(Paragraph("KPI Talking Points (Conversational)", project_title))
 
     kpi_data = [
-        ['$1.3 Trillion', '"I analyzed 15 major tech companies representing over a trillion dollars in market capitalization - so this covered the major players in the sector comprehensively."'],
-        ['100% Success', '"I achieved 100% success collecting 1,350 records over 90 days. That reliability was critical because gaps in financial data can lead to wrong conclusions."'],
-        ['15 Companies', '"I focused on 15 major technology sector leaders - companies like the big tech giants. This gave us enough diversity to see competitive patterns."'],
-        ['Tableau Public', '"I deployed the dashboard on Tableau Public, which made it accessible and showed I can create professional, shareable visualizations."']
+        ['KPI', 'Value', 'Impact', 'What to Say'],
+        ['Market Cap Analyzed', '$1.3 Trillion', 'Comprehensive market coverage', '"I analyzed 15 major tech companies representing over a trillion dollars in market cap - covered the major players comprehensively."'],
+        ['Data Collection Rate', '100%', '1,350 records across 90 days', '"I achieved 100% success collecting data over 90 days. That reliability was critical because gaps lead to wrong conclusions."'],
+        ['Companies Tracked', '15', 'Major technology sector leaders', '"I focused on 15 tech sector leaders. This gave us enough diversity to see competitive patterns without being overwhelming."'],
+        ['Dashboard Deployment', 'Tableau Public', 'Executive-level visualization', '"I deployed on Tableau Public, making it accessible and showing I can create professional, shareable visualizations."']
     ]
-    kpi_table = Table(kpi_data, colWidths=[1.3*inch, 5*inch])
+    kpi_table = Table(kpi_data, colWidths=[1.3*inch, 1*inch, 1.4*inch, 2.6*inch])
     kpi_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (0, -1), light_blue),
-        ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 9),
+        ('BACKGROUND', (0, 0), (-1, 0), oxford_blue),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 9),
+        ('FONTSIZE', (0, 1), (-1, -1), 8),
         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-        ('LEFTPADDING', (0, 0), (-1, -1), 10),
-        ('RIGHTPADDING', (0, 0), (-1, -1), 10),
+        ('LEFTPADDING', (0, 0), (-1, -1), 8),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 8),
         ('TOPPADDING', (0, 0), (-1, -1), 8),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('TEXTCOLOR', (0, 0), (0, -1), oxford_blue)
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, light_blue])
     ]))
     elements.append(kpi_table)
 
@@ -231,22 +207,26 @@ def create_presentation_guide_pdf():
     elements.append(Paragraph("Key KPIs to Mention", project_title))
 
     kpi_sales = [
-        ['$589,089', 'Total revenue analyzed for complete business picture'],
-        ['$19,636 AOV', 'High-value transactions requiring careful customer management'],
-        ['Furniture', 'Highest revenue category - informed inventory strategy'],
-        ['Millennials', 'Primary demographic (25-35) - targeted marketing focus']
+        ['KPI', 'Value', 'Impact', 'What to Say'],
+        ['Total Revenue', '$589,089', 'Comprehensive revenue analysis', '"Just under $590K in total revenue - gave us a complete picture of business performance."'],
+        ['Avg Order Value', '$19,636', 'High-value transaction insights', '"Almost $20K average order value told us we needed careful customer relationship management."'],
+        ['Top Category', 'Furniture', 'Highest revenue potential', '"Furniture emerged as top revenue category - directly informed inventory and marketing strategies."'],
+        ['Primary Demo', 'Millennials (25-35)', 'Targeted marketing focus', '"Millennials were the primary demographic - enabled targeted marketing toward this segment."']
     ]
-    kpi_sales_table = Table(kpi_sales, colWidths=[1.3*inch, 5*inch])
+    kpi_sales_table = Table(kpi_sales, colWidths=[1.2*inch, 1*inch, 1.4*inch, 2.7*inch])
     kpi_sales_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (0, -1), light_blue),
-        ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 9),
-        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        ('LEFTPADDING', (0, 0), (-1, -1), 10),
+        ('BACKGROUND', (0, 0), (-1, 0), oxford_blue),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 9),
+        ('FONTSIZE', (0, 1), (-1, -1), 8),
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('LEFTPADDING', (0, 0), (-1, -1), 8),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 8),
         ('TOPPADDING', (0, 0), (-1, -1), 8),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('TEXTCOLOR', (0, 0), (0, -1), oxford_blue)
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, light_blue])
     ]))
     elements.append(kpi_sales_table)
 
@@ -268,23 +248,27 @@ def create_presentation_guide_pdf():
     elements.append(Paragraph("Key Points to Emphasize", project_title))
 
     key_points = [
-        ['Google Analytics 4', 'Real enterprise platform experience with BigQuery'],
-        ['Cohort Analysis', 'Month-over-month retention tracking - identifies loyalty patterns'],
-        ['Engagement Scoring', 'Weighted activity metrics to classify customer tiers'],
-        ['Churn Prediction', 'Risk scoring for proactive intervention - prevents loss'],
-        ['Multi-touch Attribution', 'Optimizes marketing spend by showing what drives conversions']
+        ['KPI', 'Value', 'Impact', 'What to Say'],
+        ['Data Source', 'Google Analytics 4', 'Real enterprise platform', '"I used real GA4 data from BigQuery - demonstrates I can work with enterprise analytics platforms."'],
+        ['Cohort Analysis', 'Month-over-month', 'Retention pattern identification', '"I built cohort tracking to identify loyalty patterns and see how retention evolved over time."'],
+        ['Engagement Scoring', 'Multi-dimensional', 'Customer tier classification', '"I created weighted engagement scores to classify customers into High, Medium, Low tiers."'],
+        ['Churn Prediction', 'Risk scoring', 'Proactive intervention', '"The churn model scores customers by risk and prioritizes who needs intervention first."'],
+        ['Multi-touch Attribution', 'Journey optimization', 'Marketing spend optimization', '"I mapped the customer journey to show what actually drives conversions and optimize spend."']
     ]
-    key_table = Table(key_points, colWidths=[1.5*inch, 4.8*inch])
+    key_table = Table(key_points, colWidths=[1.2*inch, 1.1*inch, 1.3*inch, 2.7*inch])
     key_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (0, -1), light_blue),
-        ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 9),
+        ('BACKGROUND', (0, 0), (-1, 0), oxford_blue),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 9),
+        ('FONTSIZE', (0, 1), (-1, -1), 8),
         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-        ('LEFTPADDING', (0, 0), (-1, -1), 10),
+        ('LEFTPADDING', (0, 0), (-1, -1), 8),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 8),
         ('TOPPADDING', (0, 0), (-1, -1), 8),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('TEXTCOLOR', (0, 0), (0, -1), oxford_blue)
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, light_blue])
     ]))
     elements.append(key_table)
 
@@ -306,23 +290,27 @@ def create_presentation_guide_pdf():
     elements.append(Paragraph("What Makes This Impressive", project_title))
 
     impressive = [
-        ['3 API Integration', 'RentCast + FRED + ATTOM - demonstrates multi-source data handling'],
-        ['Financial Modeling', 'Cap Rate, Cash Flow, ROI - real metrics investors use'],
-        ['SQL Progression', '5 complexity levels - shows range from basic to advanced'],
-        ['Investment Scoring', 'Multi-factor algorithm weighing 5+ factors objectively'],
-        ['Geographic Analysis', 'Location trends + market velocity - timing is everything']
+        ['KPI', 'Value', 'Impact', 'What to Say'],
+        ['API Integration', '3 sources', 'RentCast, FRED, ATTOM', '"I integrated three APIs for a complete picture - demonstrates multi-source data handling."'],
+        ['Financial Modeling', 'Cap Rate, ROI, Cash Flow', 'Real investor metrics', '"I calculate the key metrics investors actually use - cap rate, cash flow, and ROI."'],
+        ['SQL Progression', '5 complexity levels', 'Basic to advanced queries', '"I designed SQL queries from basic to advanced - shows range from simple aggregations to complex CTEs."'],
+        ['Investment Scoring', 'Multi-factor algorithm', '5+ weighted factors', '"The scoring algorithm weighs multiple factors objectively - systematic and data-driven."'],
+        ['Geographic Analysis', 'Location-based', 'Market velocity & trends', '"Location analysis shows pricing trends and market velocity - timing is everything in real estate."']
     ]
-    impressive_table = Table(impressive, colWidths=[1.5*inch, 4.8*inch])
+    impressive_table = Table(impressive, colWidths=[1.2*inch, 1.1*inch, 1.3*inch, 2.7*inch])
     impressive_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (0, -1), light_blue),
-        ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 9),
+        ('BACKGROUND', (0, 0), (-1, 0), oxford_blue),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 9),
+        ('FONTSIZE', (0, 1), (-1, -1), 8),
         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-        ('LEFTPADDING', (0, 0), (-1, -1), 10),
+        ('LEFTPADDING', (0, 0), (-1, -1), 8),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 8),
         ('TOPPADDING', (0, 0), (-1, -1), 8),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('TEXTCOLOR', (0, 0), (0, -1), oxford_blue)
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, light_blue])
     ]))
     elements.append(impressive_table)
 
