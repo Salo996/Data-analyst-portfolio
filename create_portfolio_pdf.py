@@ -24,13 +24,18 @@ def create_portfolio_pdf():
     # Define styles
     styles = getSampleStyleSheet()
 
-    # Custom styles
+    # Oxford Blue color scheme
+    oxford_blue = colors.HexColor('#002147')
+    accent_blue = colors.HexColor('#4A90E2')
+    light_blue = colors.HexColor('#E8F0F8')
+
+    # Custom styles with larger fonts and better spacing
     title_style = ParagraphStyle(
         'CustomTitle',
         parent=styles['Heading1'],
-        fontSize=32,
-        textColor=colors.HexColor('#2c3e50'),
-        spaceAfter=10,
+        fontSize=28,
+        textColor=oxford_blue,
+        spaceAfter=14,
         alignment=TA_CENTER,
         fontName='Helvetica-Bold'
     )
@@ -48,9 +53,9 @@ def create_portfolio_pdf():
     subtitle_style = ParagraphStyle(
         'Subtitle',
         parent=styles['Heading2'],
-        fontSize=14,
-        textColor=colors.HexColor('#3498db'),
-        spaceAfter=8,
+        fontSize=13,
+        textColor=oxford_blue,
+        spaceAfter=10,
         fontName='Helvetica-Bold'
     )
 
@@ -58,17 +63,17 @@ def create_portfolio_pdf():
         'SmallHeading',
         parent=styles['Heading3'],
         fontSize=11,
-        textColor=colors.HexColor('#27ae60'),
-        spaceAfter=4,
+        textColor=accent_blue,
+        spaceAfter=6,
         fontName='Helvetica-Bold'
     )
 
     body_style = ParagraphStyle(
         'CustomBody',
         parent=styles['BodyText'],
-        fontSize=9,
-        leading=12,
-        spaceAfter=6
+        fontSize=10,
+        leading=14,
+        spaceAfter=8
     )
 
     # PAGE 1: COVER PAGE
@@ -113,7 +118,7 @@ def create_portfolio_pdf():
 
     # PROJECT 1: MARKET INTELLIGENCE DASHBOARD
     elements.append(Paragraph("Project 1: Market Intelligence Dashboard", title_style))
-    elements.append(Spacer(1, 0.1*inch))
+    elements.append(Spacer(1, 0.15*inch))
 
     # KPIs Table
     kpi_data = [
@@ -125,17 +130,20 @@ def create_portfolio_pdf():
     ]
     kpi_table = Table(kpi_data, colWidths=[2*inch, 1.8*inch, 2.5*inch])
     kpi_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3498db')),
+        ('BACKGROUND', (0, 0), (-1, 0), oxford_blue),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 9),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
+        ('FONTSIZE', (0, 1), (-1, -1), 10),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#f0f0f0')])
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, light_blue]),
+        ('TOPPADDING', (0, 0), (-1, -1), 8),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 8)
     ]))
     elements.append(kpi_table)
-    elements.append(Spacer(1, 0.15*inch))
+    elements.append(Spacer(1, 0.2*inch))
 
     elements.append(Paragraph("<b>Business Problem:</b> Need for comprehensive market intelligence platform to analyze technology sector performance, competitive positioning, and investment risk.", body_style))
 
@@ -161,7 +169,7 @@ def create_portfolio_pdf():
 
     # PROJECT 2: SALES PERFORMANCE ANALYTICS
     elements.append(Paragraph("Project 2: Sales Performance Analytics", title_style))
-    elements.append(Spacer(1, 0.1*inch))
+    elements.append(Spacer(1, 0.15*inch))
 
     # KPIs Table
     kpi_data = [
@@ -174,17 +182,20 @@ def create_portfolio_pdf():
     ]
     kpi_table = Table(kpi_data, colWidths=[2*inch, 1.8*inch, 2.5*inch])
     kpi_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3498db')),
+        ('BACKGROUND', (0, 0), (-1, 0), oxford_blue),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 9),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
+        ('FONTSIZE', (0, 1), (-1, -1), 10),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#f0f0f0')])
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, light_blue]),
+        ('TOPPADDING', (0, 0), (-1, -1), 8),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 8)
     ]))
     elements.append(kpi_table)
-    elements.append(Spacer(1, 0.15*inch))
+    elements.append(Spacer(1, 0.2*inch))
 
     elements.append(Paragraph("<b>Business Problem:</b> E-commerce business needs to understand which categories drive revenue, how customer segments behave, which products perform best, and who the most valuable customers are.", body_style))
 
@@ -211,7 +222,7 @@ def create_portfolio_pdf():
 
     # PROJECT 3: CUSTOMER BEHAVIOR ANALYTICS
     elements.append(Paragraph("Project 3: Customer Behavior Analytics", title_style))
-    elements.append(Spacer(1, 0.1*inch))
+    elements.append(Spacer(1, 0.15*inch))
 
     # KPIs Table
     kpi_data = [
@@ -224,17 +235,20 @@ def create_portfolio_pdf():
     ]
     kpi_table = Table(kpi_data, colWidths=[2*inch, 1.8*inch, 2.5*inch])
     kpi_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3498db')),
+        ('BACKGROUND', (0, 0), (-1, 0), oxford_blue),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 9),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
+        ('FONTSIZE', (0, 1), (-1, -1), 10),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#f0f0f0')])
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, light_blue]),
+        ('TOPPADDING', (0, 0), (-1, -1), 8),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 8)
     ]))
     elements.append(kpi_table)
-    elements.append(Spacer(1, 0.15*inch))
+    elements.append(Spacer(1, 0.2*inch))
 
     elements.append(Paragraph("<b>Business Problem:</b> Optimize customer retention, predict churn risk, maximize lifetime value, and understand customer journey patterns to reduce acquisition costs.", body_style))
 
@@ -262,7 +276,7 @@ def create_portfolio_pdf():
 
     # PROJECT 4: REAL ESTATE INVESTMENT ANALYSIS
     elements.append(Paragraph("Project 4: Real Estate Investment Analysis", title_style))
-    elements.append(Spacer(1, 0.1*inch))
+    elements.append(Spacer(1, 0.15*inch))
 
     # KPIs Table
     kpi_data = [
@@ -275,17 +289,20 @@ def create_portfolio_pdf():
     ]
     kpi_table = Table(kpi_data, colWidths=[2*inch, 1.8*inch, 2.5*inch])
     kpi_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3498db')),
+        ('BACKGROUND', (0, 0), (-1, 0), oxford_blue),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 9),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
+        ('FONTSIZE', (0, 1), (-1, -1), 10),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#f0f0f0')])
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, light_blue]),
+        ('TOPPADDING', (0, 0), (-1, -1), 8),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 8)
     ]))
     elements.append(kpi_table)
-    elements.append(Spacer(1, 0.15*inch))
+    elements.append(Spacer(1, 0.2*inch))
 
     elements.append(Paragraph("<b>Business Problem:</b> Real estate investors need systematic approach to evaluate properties, calculate ROI metrics, assess market conditions, and identify optimal investment opportunities.", body_style))
 
