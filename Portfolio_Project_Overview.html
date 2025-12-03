@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salomón Santiago - Portfolio Project Overview</title>
+    <style>
+        @media print {
+            .page-break { page-break-after: always; }
+            body { margin: 0; }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 0 auto;
+            background: white;
+            box-sizing: border-box;
+        }
+
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .cover-page h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .cover-page h2 {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .cover-page .subtitle {
+            font-size: 18px;
+            margin: 10px 0;
+            opacity: 0.9;
+        }
+
+        .cover-page .contact {
+            margin-top: 50px;
+            font-size: 16px;
+        }
+
+        .project-page h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .project-page h2 {
+            color: #2980b9;
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .project-page h3 {
+            color: #27ae60;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        .section-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .tech-badge {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .metric {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20mm;
+            left: 20mm;
+            right: 20mm;
+            text-align: center;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER PAGE -->
+<div class="page cover-page">
+    <h1>Data Analyst Portfolio</h1>
+    <h2>Project Overview & Technical Showcase</h2>
+    <div class="subtitle">Salomón Santiago Esquivel</div>
+    <div class="subtitle">Service Offering Manager & Data Analyst</div>
+    <div class="subtitle">6+ Years Experience | Python, SQL, Tableau, Excel</div>
+
+    <div class="contact">
+        <p><strong>Email:</strong> salo.santiago96@gmail.com</p>
+        <p><strong>Phone:</strong> +52 551916 4142</p>
+        <p><strong>LinkedIn:</strong> linkedin.com/in/salomon-santiago-493002a7</p>
+        <p><strong>Portfolio:</strong> salo996.github.io/Data-analyst-portfolio</p>
+    </div>
+
+    <div style="margin-top: 60px; font-size: 14px; opacity: 0.8;">
+        <p>4 Featured Projects | End-to-End Data Analysis</p>
+        <p>Business Intelligence | Financial Analytics | Customer Insights</p>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 2: PROJECT 1 - MARKET INTELLIGENCE DASHBOARD -->
+<div class="page project-page">
+    <h1>Project 1: Market Intelligence Dashboard</h1>
+
+    <div class="section-box">
+        <h2>📊 Business Problem</h2>
+        <p>Need for comprehensive market intelligence platform to analyze technology sector performance, competitive positioning, and investment risk across 15 major companies representing <span class="metric">$1.3 trillion in market capitalization</span>.</p>
+    </div>
+
+    <h2>🎯 My Approach</h2>
+    <ul>
+        <li><strong>Data Collection:</strong> Built Python API integration with Alpha Vantage to collect real-time financial data (1,350 records across 90 days)</li>
+        <li><strong>Data Storage:</strong> Designed SQLite database schema for efficient data management and querying</li>
+        <li><strong>Analysis:</strong> Created advanced SQL queries for competitive analysis, risk metrics (VaR), and business intelligence</li>
+        <li><strong>Visualization:</strong> Developed executive-level Tableau dashboard for strategic decision-making</li>
+    </ul>
+
+    <h2>🛠️ Technical Stack</h2>
+    <div class="tech-stack">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">SQL (SQLite)</span>
+        <span class="tech-badge">Tableau Public</span>
+        <span class="tech-badge">Alpha Vantage API</span>
+        <span class="tech-badge">Git</span>
+    </div>
+
+    <div class="highlight-box">
+        <h2>🎖️ Key Results & Skills Demonstrated</h2>
+        <ul>
+            <li><span class="metric">100% data collection success rate</span> - Reliable API integration with error handling</li>
+            <li><strong>End-to-end pipeline:</strong> API → Database → Analysis → Visualization</li>
+            <li><strong>Advanced SQL:</strong> Multi-table joins, CTEs, window functions for competitive analysis</li>
+            <li><strong>Risk analytics:</strong> Value at Risk (VaR) calculations and portfolio metrics</li>
+            <li><strong>Business storytelling:</strong> Executive dashboard communicating complex financial data</li>
+        </ul>
+    </div>
+
+    <h2>💼 Business Value</h2>
+    <p>Provides strategic insights for investment decisions, competitive positioning, and market timing. Demonstrates ability to transform raw financial data into actionable executive intelligence.</p>
+
+    <div class="footer">Project 1 of 4 | Salomón Santiago - Data Analyst Portfolio</div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 3: PROJECT 2 - SALES PERFORMANCE ANALYTICS -->
+<div class="page project-page">
+    <h1>Project 2: Sales Performance Analytics</h1>
+
+    <div class="section-box">
+        <h2>📊 Business Problem</h2>
+        <p>E-commerce business needs comprehensive sales analysis to answer: Which categories drive revenue? How do customer segments behave? Which products perform best? Who are the most valuable customers?</p>
+    </div>
+
+    <h2>🎯 My Approach</h2>
+    <ul>
+        <li><strong>Data Extraction:</strong> Collected product, customer, and transaction data from DummyJSON API</li>
+        <li><strong>Revenue Analysis:</strong> Analyzed <span class="metric">$589K in potential revenue</span> across product categories</li>
+        <li><strong>Customer Segmentation:</strong> Created demographic analysis grouping customers by generation (Gen Z, Millennials, Gen X, Boomers)</li>
+        <li><strong>Performance Ranking:</strong> Built SQL queries to rank products by rating, revenue potential, and customer preference</li>
+        <li><strong>Documentation:</strong> Created comprehensive SQL query documentation for knowledge sharing</li>
+    </ul>
+
+    <h2>🛠️ Technical Stack</h2>
+    <div class="tech-stack">
+        <span class="tech-badge">SQL</span>
+        <span class="tech-badge">Excel</span>
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Tableau</span>
+        <span class="tech-badge">DummyJSON API</span>
+    </div>
+
+    <div class="highlight-box">
+        <h2>🎖️ Key Results & Skills Demonstrated</h2>
+        <ul>
+            <li><strong>Category Insights:</strong> Identified Furniture as highest revenue potential category</li>
+            <li><strong>Customer Intelligence:</strong> Millennials (25-35) identified as primary demographic segment</li>
+            <li><strong>SQL Expertise:</strong> Progressive complexity from basic aggregations to advanced window functions</li>
+            <li><strong>Documentation Skills:</strong> Created professional query documentation with explanations and business impact</li>
+            <li><strong>KPI Dashboard:</strong> Built executive dashboard showing Total Revenue, Customers, Orders, and Average Order Value</li>
+        </ul>
+    </div>
+
+    <h2>💼 Business Value</h2>
+    <p>Enables data-driven inventory decisions, targeted marketing by customer segment, and product portfolio optimization. Clear SQL documentation facilitates team collaboration and knowledge transfer.</p>
+
+    <div class="footer">Project 2 of 4 | Salomón Santiago - Data Analyst Portfolio</div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 4: PROJECT 3 - CUSTOMER BEHAVIOR ANALYTICS -->
+<div class="page project-page">
+    <h1>Project 3: Customer Behavior Analytics</h1>
+
+    <div class="section-box">
+        <h2>📊 Business Problem</h2>
+        <p>Need to optimize customer retention, predict churn risk, maximize lifetime value, and understand customer journey patterns to drive strategic marketing and reduce customer acquisition costs.</p>
+    </div>
+
+    <h2>🎯 My Approach</h2>
+    <ul>
+        <li><strong>Data Source:</strong> Leveraged Google Analytics 4 BigQuery public dataset for real customer behavior data</li>
+        <li><strong>Cohort Analysis:</strong> Built month-over-month retention tracking to identify loyalty patterns</li>
+        <li><strong>Behavioral Segmentation:</strong> Created engagement scoring system with weighted activity metrics</li>
+        <li><strong>Churn Prediction:</strong> Developed risk scoring based on engagement patterns and purchase recency</li>
+        <li><strong>Journey Analytics:</strong> Mapped multi-touch attribution to optimize conversion paths</li>
+    </ul>
+
+    <h2>🛠️ Technical Stack</h2>
+    <div class="tech-stack">
+        <span class="tech-badge">Google Analytics 4</span>
+        <span class="tech-badge">BigQuery SQL</span>
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">Advanced SQL</span>
+        <span class="tech-badge">Data Visualization</span>
+    </div>
+
+    <div class="highlight-box">
+        <h2>🎖️ Key Results & Skills Demonstrated</h2>
+        <ul>
+            <li><strong>Retention Intelligence:</strong> Cohort-based retention analysis with lifecycle progression tracking</li>
+            <li><strong>Customer Segmentation:</strong> Multi-dimensional profiling with engagement scores and value tiers</li>
+            <li><strong>Predictive Analytics:</strong> Churn risk scoring with intervention prioritization</li>
+            <li><strong>Advanced SQL:</strong> Complex window functions, CTEs, and behavioral event analysis</li>
+            <li><strong>Strategic Recommendations:</strong> Actionable insights for loyalty programs and retention strategies</li>
+        </ul>
+    </div>
+
+    <h2>💼 Business Value</h2>
+    <p>Enables proactive churn prevention, personalized customer engagement, optimized marketing spend, and lifetime value maximization. Real-world GA4 data demonstrates ability to work with enterprise analytics platforms.</p>
+
+    <div class="footer">Project 3 of 4 | Salomón Santiago - Data Analyst Portfolio</div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 5: PROJECT 4 - REAL ESTATE INVESTMENT ANALYSIS -->
+<div class="page project-page">
+    <h1>Project 4: Real Estate Investment Analysis</h1>
+
+    <div class="section-box">
+        <h2>📊 Business Problem</h2>
+        <p>Real estate investors need systematic approach to evaluate properties, calculate ROI metrics, assess market conditions, and identify optimal investment opportunities based on multi-factor financial analysis.</p>
+    </div>
+
+    <h2>🎯 My Approach</h2>
+    <ul>
+        <li><strong>Data Integration:</strong> Combined RentCast API (property valuations), FRED API (economic indicators), and ATTOM Data (market analytics)</li>
+        <li><strong>Financial Modeling:</strong> Built comprehensive ROI calculators including Cap Rate, Cash Flow, and Cash-on-Cash Return</li>
+        <li><strong>Geographic Analysis:</strong> Location-based pricing trends and market velocity analysis</li>
+        <li><strong>Investment Scoring:</strong> Developed weighted algorithm combining 5+ factors for property ranking</li>
+        <li><strong>SQL Progression:</strong> Designed query suite from basic to advanced (5 complexity levels)</li>
+    </ul>
+
+    <h2>🛠️ Technical Stack</h2>
+    <div class="tech-stack">
+        <span class="tech-badge">Python</span>
+        <span class="tech-badge">SQL (SQLite)</span>
+        <span class="tech-badge">Multiple APIs</span>
+        <span class="tech-badge">Financial Modeling</span>
+        <span class="tech-badge">Geographic Analysis</span>
+    </div>
+
+    <div class="highlight-box">
+        <h2>🎖️ Key Results & Skills Demonstrated</h2>
+        <ul>
+            <li><strong>Financial Analytics:</strong> Cap rate calculations, monthly cash flow projections, ROI metrics</li>
+            <li><strong>Multi-API Integration:</strong> Combined 3 data sources with error handling and data validation</li>
+            <li><strong>Advanced SQL:</strong> Multi-CTE investment scoring algorithm with weighted factors</li>
+            <li><strong>Market Intelligence:</strong> Time series analysis, seasonal patterns, and market velocity tracking</li>
+            <li><strong>Decision Support:</strong> Systematic property evaluation framework for investment optimization</li>
+        </ul>
+    </div>
+
+    <h2>💼 Business Value</h2>
+    <p>Provides data-driven investment decision framework, reduces risk through comprehensive analysis, optimizes portfolio allocation, and identifies high-ROI opportunities. Demonstrates financial modeling and multi-source data integration skills.</p>
+
+    <div class="footer">Project 4 of 4 | Salomón Santiago - Data Analyst Portfolio</div>
+</div>
+
+</body>
+</html>
