@@ -97,10 +97,21 @@ def create_presentation_guide_pdf():
 
     # PROJECT 1: MARKET INTELLIGENCE
     elements.append(Paragraph("📊 Project 1: Market Intelligence Dashboard", section_title))
-    elements.append(Paragraph("30-Second Pitch", project_title))
-    elements.append(Paragraph("<i>\"I built a market intelligence platform analyzing $1.3T in market cap across 15 major tech companies. I collected real-time financial data through APIs, designed a database, wrote SQL for competitive analysis and risk metrics, and created an executive Tableau dashboard showing end-to-end pipeline capability.\"</i>", italic_text))
 
-    elements.append(Spacer(1, 0.12*inch))
+    elements.append(Paragraph("Business Problem", project_title))
+    elements.append(Paragraph("<i>Investors needed comprehensive market intelligence to analyze technology sector performance, competitive positioning, and investment risk across major companies.</i>", italic_text))
+
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph("30-Second Pitch", project_title))
+    elements.append(Paragraph("<i>\"I built a platform analyzing $1.3T in market cap across 15 tech companies. Collected real-time data via APIs, designed database, wrote SQL for competitive analysis and risk metrics, created executive Tableau dashboard.\"</i>", italic_text))
+
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph("Key Results", project_title))
+    results1 = """• 100% data collection success (1,350 records/90 days)  • End-to-end pipeline: API → Database → SQL → Visualization
+• Advanced SQL: Joins, CTEs, window functions, VaR  • Executive Tableau dashboard for strategic decisions"""
+    elements.append(Paragraph(results1, ParagraphStyle('results', fontSize=9, leading=11, leftIndent=10)))
+
+    elements.append(Spacer(1, 0.08*inch))
     elements.append(Paragraph("KPI Talking Points", project_title))
 
     kpi1_data = [
@@ -112,35 +123,25 @@ def create_presentation_guide_pdf():
     ]
     elements.append(create_kpi_table(kpi1_data, oxford_blue, light_blue))
 
-    elements.append(Spacer(1, 0.12*inch))
-    elements.append(Paragraph("If Asked Technical Questions", project_title))
-    qa1 = [
-        [Paragraph('<b>Q: SQL techniques?</b>', ParagraphStyle('q', fontSize=8)),
-         Paragraph('"Multi-table joins, CTEs, window functions for Value at Risk calculations."', ParagraphStyle('a', fontSize=8))],
-        [Paragraph('<b>Q: Why SQLite?</b>', ParagraphStyle('q', fontSize=8)),
-         Paragraph('"Lightweight, no server needed. For production I\'d use PostgreSQL."', ParagraphStyle('a', fontSize=8))],
-        [Paragraph('<b>Q: Improvements?</b>', ParagraphStyle('q', fontSize=8)),
-         Paragraph('"Real-time updates, news sentiment, predictive analytics, market alerts."', ParagraphStyle('a', fontSize=8))]
-    ]
-    qa1_table = Table(qa1, colWidths=[1.6*inch, 4.7*inch])
-    qa1_table.setStyle(TableStyle([
-        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-        ('LEFTPADDING', (0, 0), (-1, -1), 6),
-        ('TOPPADDING', (0, 0), (-1, -1), 6),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
-        ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-        ('BACKGROUND', (0, 0), (0, -1), light_blue)
-    ]))
-    elements.append(qa1_table)
-
     elements.append(PageBreak())
 
     # PROJECT 2: SALES PERFORMANCE
     elements.append(Paragraph("📊 Project 2: Sales Performance Analytics", section_title))
-    elements.append(Paragraph("30-Second Pitch", project_title))
-    elements.append(Paragraph("<i>\"I analyzed $589K in e-commerce revenue across 30 customers. Used SQL to identify revenue drivers, segment customers by demographics, rank products, and create documentation for team use. Found Furniture as top category and Millennials as primary demographic.\"</i>", italic_text))
 
-    elements.append(Spacer(1, 0.12*inch))
+    elements.append(Paragraph("Business Problem", project_title))
+    elements.append(Paragraph("<i>E-commerce business needed to understand which categories drive revenue, how customer segments behave, which products perform best, and who the most valuable customers are.</i>", italic_text))
+
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph("30-Second Pitch", project_title))
+    elements.append(Paragraph("<i>\"I analyzed $589K in revenue across 30 customers. Used SQL to identify revenue drivers, segment customers by demographics, rank products. Found Furniture as top category and Millennials as primary demographic.\"</i>", italic_text))
+
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph("Key Results", project_title))
+    results2 = """• Identified Furniture as highest revenue potential category  • Millennials (25-35) discovered as primary demographic
+• SQL progression: Basic aggregations to advanced window functions  • Created comprehensive documentation for team collaboration"""
+    elements.append(Paragraph(results2, ParagraphStyle('results', fontSize=9, leading=11, leftIndent=10)))
+
+    elements.append(Spacer(1, 0.08*inch))
     elements.append(Paragraph("KPI Talking Points", project_title))
 
     kpi2_data = [
@@ -156,10 +157,21 @@ def create_presentation_guide_pdf():
 
     # PROJECT 3: CUSTOMER BEHAVIOR
     elements.append(Paragraph("📊 Project 3: Customer Behavior Analytics", section_title))
-    elements.append(Paragraph("30-Second Pitch", project_title))
-    elements.append(Paragraph("<i>\"Built customer analytics platform using Google Analytics 4 data. Did cohort analysis for retention tracking, engagement scoring for segmentation, and churn prediction model. Enables proactive customer retention and lifetime value maximization.\"</i>", italic_text))
 
-    elements.append(Spacer(1, 0.12*inch))
+    elements.append(Paragraph("Business Problem", project_title))
+    elements.append(Paragraph("<i>Optimize customer retention, predict churn risk, maximize lifetime value, and understand customer journey patterns to reduce acquisition costs and increase profitability.</i>", italic_text))
+
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph("30-Second Pitch", project_title))
+    elements.append(Paragraph("<i>\"Built analytics platform using Google Analytics 4 data. Did cohort analysis for retention tracking, engagement scoring for segmentation, churn prediction model. Enables proactive retention and lifetime value maximization.\"</i>", italic_text))
+
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph("Key Results", project_title))
+    results3 = """• Cohort-based retention analysis with lifecycle progression tracking  • Multi-dimensional customer profiling with value tiers
+• Churn prediction with intervention prioritization  • Multi-touch attribution optimizing marketing spend"""
+    elements.append(Paragraph(results3, ParagraphStyle('results', fontSize=9, leading=11, leftIndent=10)))
+
+    elements.append(Spacer(1, 0.08*inch))
     elements.append(Paragraph("KPI Talking Points", project_title))
 
     kpi3_data = [
@@ -176,10 +188,21 @@ def create_presentation_guide_pdf():
 
     # PROJECT 4: REAL ESTATE
     elements.append(Paragraph("📊 Project 4: Real Estate Investment Analysis", section_title))
-    elements.append(Paragraph("30-Second Pitch", project_title))
-    elements.append(Paragraph("<i>\"Built real estate investment system integrating 3 APIs - property valuations, economic indicators, market analytics. Calculate ROI metrics (cap rate, cash flow, ROI), perform geographic analysis, and use weighted scoring algorithm to rank investment opportunities systematically.\"</i>", italic_text))
 
-    elements.append(Spacer(1, 0.12*inch))
+    elements.append(Paragraph("Business Problem", project_title))
+    elements.append(Paragraph("<i>Real estate investors need systematic approach to evaluate properties, calculate ROI metrics, assess market conditions, and identify optimal investment opportunities based on multi-factor financial analysis.</i>", italic_text))
+
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph("30-Second Pitch", project_title))
+    elements.append(Paragraph("<i>\"Built investment system integrating 3 APIs - property valuations, economic indicators, market analytics. Calculate ROI metrics (cap rate, cash flow), perform geographic analysis, use weighted scoring to rank opportunities systematically.\"</i>", italic_text))
+
+    elements.append(Spacer(1, 0.08*inch))
+    elements.append(Paragraph("Key Results", project_title))
+    results4 = """• Multi-API integration (RentCast, FRED, ATTOM) with error handling  • Financial analytics: Cap rate, cash flow, ROI projections
+• SQL progression: 5 complexity levels from basic to advanced CTEs  • Multi-factor investment scoring for systematic property evaluation"""
+    elements.append(Paragraph(results4, ParagraphStyle('results', fontSize=9, leading=11, leftIndent=10)))
+
+    elements.append(Spacer(1, 0.08*inch))
     elements.append(Paragraph("KPI Talking Points", project_title))
 
     kpi4_data = [
