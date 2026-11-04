@@ -244,6 +244,32 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         </div>
       </article>
 
+      <article class="h8" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0;background:#0a2540;border:1px solid #1c3d60;border-radius:12px;overflow:hidden">
+        <div style="padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:#081f37;border-right:1px solid #1c3d60;font-family:'JetBrains Mono',monospace">
+          <span style="font-size:12px;color:#6f8aa6">case_05 · market intelligence</span>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:15px;color:#8ea6bf;text-decoration:line-through;text-decoration-color:#e0707a">guessing</span>
+            <span style="font-size:clamp(30px,3.4vw,42px);color:#5fe3c0;font-weight:500;line-height:1.1">502 jobs</span>
+          </div>
+          <span style="font-size:12px;color:#6f8aa6">39 tools · remote data &amp; AI roles</span>
+        </div>
+        <div style="padding:32px;display:flex;flex-direction:column;gap:16px;grid-column:span 2">
+          <h3 style="margin:0;font-size:22px;font-weight:600;color:#f2f7fc">Remote Data &amp; AI Job Market Dashboard</h3>
+          <p style="margin:0;font-size:15px;line-height:1.7;color:#a9bbcf;text-wrap:pretty">I scraped 502 public remote job postings with Firecrawl and parsed them with a deterministic Python pipeline (an LLM extraction hallucinated salaries, so I replaced it). The result is a star schema (jobs, tools, bridge) that feeds an interactive React dashboard: which tools employers ask for, how demand splits by role family, and AI mentions. Salary is disclosed in only 38% of postings, and the dashboard says so. I also packaged the same view as a custom Power BI visual with cross-filtering.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#a9bbcf;border:1px solid #1c3d60;padding:4px 10px;border-radius:4px">Python</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#a9bbcf;border:1px solid #1c3d60;padding:4px 10px;border-radius:4px">Firecrawl</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#a9bbcf;border:1px solid #1c3d60;padding:4px 10px;border-radius:4px">React</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#a9bbcf;border:1px solid #1c3d60;padding:4px 10px;border-radius:4px">Power BI custom visual</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#a9bbcf;border:1px solid #1c3d60;padding:4px 10px;border-radius:4px">Star schema</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:18px;font-family:'JetBrains Mono',monospace;font-size:13px">
+              <a href="https://salo996.github.io/market-intel/" target="_blank" rel="noopener">→ Live dashboard</a>
+              <a href="https://github.com/Salo996/market-intel" target="_blank" rel="noopener">→ Code &amp; pipeline</a>
+          </div>
+        </div>
+      </article>
+
       <article class="h11"style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0;background:#0a2540;border:1px solid #1c3d60;border-radius:12px;overflow:hidden">
         <div style="padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:#081f37;border-right:1px solid #1c3d60;font-family:'JetBrains Mono',monospace">
           <span style="font-size:12px;color:#6f8aa6">founder · uffdeli</span>
